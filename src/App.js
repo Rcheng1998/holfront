@@ -37,8 +37,8 @@ class App extends React.Component{
       <div className="App">
         {this.renderList()}
         <iframe
-   test="test2"
-   src="https://clips.twitch.tv/embed?clip=IncredulousAbstemiousFennelImGlitch&parent=http://localhost:3000/&parent=localhost:3000"
+   title="test2"
+   src="https://clips.twitch.tv/embed?clip=IncredulousAbstemiousFennelImGlitch&parent=https://unruffled-ardinghelli-9ad4d8.netlify.app/&parent=unruffled-ardinghelli-9ad4d8.netlify.app&parent=netlify.app"
    height="360"
    width="640"
    allowfullscreen="true">

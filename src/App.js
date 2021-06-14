@@ -35,13 +35,11 @@ class App extends React.Component{
   render(){
     return (
       <div className="App">
-        {this.renderList()}
         <iframe
    title="test2"
-   src="https://clips.twitch.tv/embed?clip=IncredulousAbstemiousFennelImGlitch&parent=https://unruffled-ardinghelli-9ad4d8.netlify.app/&parent=unruffled-ardinghelli-9ad4d8.netlify.app&parent=netlify.app"
+   src="https://clips.twitch.tv/embed?clip=IncredulousAbstemiousFennelImGlitch&parent=unruffled-ardinghelli-9ad4d8.netlify.app&parent=www.unruffled-ardinghelli-9ad4d8.netlify.app&parent=netlify.app"
    height="360"
-   width="640"
-   allowfullscreen="true">
+   width="640">
 </iframe>
       </div>
     );

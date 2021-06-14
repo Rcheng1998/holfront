@@ -2,7 +2,6 @@ import './App.css';
 import React from 'react';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css'
-import {Row, Col} from 'react-bootstrap';
 
 class App extends React.Component{
   state = {
@@ -28,7 +27,7 @@ class App extends React.Component{
 
   renderList(){
     return(
-      <iframe width="420" height="315" src={this.state.isLoaded ? this.state.clipList.data[0].embed_url + '&parent=streamernews.example.com' : this.state.test}></iframe>
+      <iframe title="test1" width="420" height="315" src={this.state.isLoaded ? this.state.clipList.data[0].embed_url + '&parent=streamernews.example.com' : this.state.test}></iframe>
       
     )
   }
@@ -38,6 +37,7 @@ class App extends React.Component{
       <div className="App">
         {this.renderList()}
         <iframe
+   test="test2"
    src="https://clips.twitch.tv/embed?clip=IncredulousAbstemiousFennelImGlitch&parent=http://localhost:3000/&parent=localhost:3000"
    height="360"
    width="640"

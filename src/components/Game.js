@@ -76,7 +76,7 @@ class Game extends React.Component{
             <Col>
                 <Embed embedURL = {this.state.rightClip.embed_url}></Embed>
                 <p>Title: {this.state.rightClip.title}</p>
-                <p id='rightViews' hidden={false}>Views: {this.state.rightClip.view_count}</p>
+                <p id='rightViews' hidden={true}>Views: {this.state.rightClip.view_count}</p>
                 <Button id="higher" onClick={handleClick}>Higher</Button>
                 <Button id="lower" onClick={handleClick}>Lower</Button>
             </Col>

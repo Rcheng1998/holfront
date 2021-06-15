@@ -20,7 +20,23 @@ class Game extends React.Component{
     checkViews(id){
         console.log('button is clicked', id)
         if(id === 'higher'){
-            console.log(this.state.clipList.data[0])
+            if(this.state.leftClip.view_count > this.state.rightClip.view_count){
+                console.log('Correct!')
+                this.setState({gameScore: this.state.gameScore + 1})
+                this.nextClips()
+            }
+            else{
+                console.log('Wrong!')
+            }
+        }
+        else if(id === 'lower'){
+            if(this.state.leftClip.view_count < this.state.rightClip.view_count){
+                console.log('Correct')
+                this.nextClips()
+            }
+            else{
+                console.log('Wrong')
+            }
         }
     }
 
@@ -37,6 +53,14 @@ class Game extends React.Component{
         this.setState({name: this.state.clipList.data[rand1].broadcaster_name})
 
         console.log('leftclip embedurl', this.state.leftClip)
+    }
+
+    nextClips(){
+        this.setState({leftClip: this.state.rightClip})
+
+        let rand2 = Math.floor(Math.random() * 100);
+
+        this.setState({rightClip: this.state.clipList.data[rand2]})
     }
 
     renderGameState(){

@@ -20,22 +20,23 @@ class Game extends React.Component{
     checkViews(id){
         console.log('button is clicked', id)
         if(id === 'higher'){
-            if(this.state.leftClip.view_count > this.state.rightClip.view_count){
+            if(this.state.leftClip.view_count < this.state.rightClip.view_count){
                 console.log('Correct!')
                 this.setState({gameScore: this.state.gameScore + 1})
                 this.nextClips()
             }
             else{
-                console.log('Wrong!')
+                console.log('Wrong! leftclip:', this.state.leftClip.view_count, 'rightclip:', this.state.rightClip.view_count)
             }
         }
         else if(id === 'lower'){
-            if(this.state.leftClip.view_count < this.state.rightClip.view_count){
+            if(this.state.leftClip.view_count > this.state.rightClip.view_count){
                 console.log('Correct')
+                this.setState({gameScore: this.state.gameScore + 1})
                 this.nextClips()
             }
             else{
-                console.log('Wrong')
+                console.log('Wrong! leftclip:', this.state.leftClip.view_count, 'rightclip:', this.state.rightClip.view_count)
             }
         }
     }
@@ -69,11 +70,13 @@ class Game extends React.Component{
         <Row>
             <Col>
                 <Embed embedURL = {this.state.leftClip.embed_url}></Embed>
+                <p>Title: {this.state.leftClip.title}</p>
                 <p>Views: {this.state.leftClip.view_count}</p>
             </Col>
             <Col>
                 <Embed embedURL = {this.state.rightClip.embed_url}></Embed>
-                <p id='rightViews' hidden={true}>Views: {this.state.rightClip.view_count}</p>
+                <p>Title: {this.state.rightClip.title}</p>
+                <p id='rightViews' hidden={false}>Views: {this.state.rightClip.view_count}</p>
                 <Button id="higher" onClick={handleClick}>Higher</Button>
                 <Button id="lower" onClick={handleClick}>Lower</Button>
             </Col>
@@ -86,8 +89,11 @@ class Game extends React.Component{
             <div>
                 <Container>
                     <Row>
-                        <h1>{this.state.name}</h1>
-                        <h2>Game Score: {this.state.gameScore}</h2>
+                        <h2 class='twitchFont'>High or Low</h2>
+                        <div class="scoreBoard">
+                            <h1>{this.state.name}</h1>
+                            <h2>Game Score: {this.state.gameScore}</h2>
+                        </div>
                     </Row>
                     {this.renderGameState()}
                 </Container>

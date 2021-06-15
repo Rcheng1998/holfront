@@ -2,6 +2,7 @@ import './App.css';
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Game from './components/Game.js'
+import MainPage from './components/MainPage.js'
 
 class App extends React.Component{
   state = {
@@ -9,6 +10,10 @@ class App extends React.Component{
     isLoaded: false,
     test: 'false'
   };
+
+  componentDidMount(){
+    document.body.style.backgroundColor = "#6441A4"
+  }
 
   render(){
     return (

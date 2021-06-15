@@ -35,6 +35,8 @@ class Game extends React.Component{
         this.setState({rightClip: this.state.clipList.data[rand2]})
 
         this.setState({name: this.state.clipList.data[rand1].broadcaster_name})
+
+        console.log('leftclip embedurl', this.state.leftClip)
     }
 
     renderGameState(){
@@ -42,11 +44,11 @@ class Game extends React.Component{
         return(
         <Row>
             <Col>
-                <Embed embedURL = {this.state.leftClip.embedURL}></Embed>
+                <Embed embedURL = {this.state.leftClip.embed_url}></Embed>
                 <p>Views: {this.state.leftClip.view_count}</p>
             </Col>
             <Col>
-                <Embed embedURL = {this.state.rightClip.embedURL}></Embed>
+                <Embed embedURL = {this.state.rightClip.embed_url}></Embed>
                 <p id='rightViews' hidden={true}>Views: {this.state.rightClip.view_count}</p>
                 <Button id="higher" onClick={handleClick}>Higher</Button>
                 <Button id="lower" onClick={handleClick}>Lower</Button>

@@ -51,14 +51,14 @@ class MainPage extends React.Component{
                             <Row>
                                 <Col xs='9'>
                                     <Form>
-                                        <Form.Group controlID='formStreamer'>
-                                            <Form.Control type="lg" type="text" value={this.state.inputValue} onChange={this.handleChange.bind(this)} placeholder="Type Twitch Name Here"></Form.Control>
+                                        <Form.Group>
+                                            <Form.Control type="text" value={this.state.inputValue} onChange={this.handleChange.bind(this)} placeholder="Type Twitch Name Here"></Form.Control>
                                         </Form.Group>
                                     </Form>
                                 </Col>
                                 <Col xs='3'>
                                     <Link to={'/twitch/' + this.state.inputValue}>
-                                        <Button variant="outline-light" block><i class="far fa-play-circle"></i> Play</Button>
+                                        <Button variant="outline-light" block> <i class="far fa-play-circle"></i> Play</Button>
                                     </Link>
                                 </Col>
                             </Row>

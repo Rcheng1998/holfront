@@ -1,7 +1,17 @@
 import React from 'react';
 import {Button, Container, Row, Col, Form} from 'react-bootstrap';
+import { Redirect, Link } from 'react-router-dom';
 
 class MainPage extends React.Component{
+    state = {
+        inputValue: ""
+    }
+
+    handleChange(event){
+        console.log('in handle change', event.target.value)
+        this.setState({inputValue: event.target.value});
+    }
+
     render(){
         return(
             <div className='outer'>
@@ -11,7 +21,7 @@ class MainPage extends React.Component{
                             <Row>
                             <h1 class="twitchFont">Twitch</h1>
                             <h1 class="twitchFont">High or Low</h1>
-                            <p class="subTitle">Choose your favorite streamer and try to guess if their clip is higher or lower!</p>
+                            <p class="subTitle">Enter your favorite streamer and try to guess if their clip is higher or lower!</p>
                             </Row>
                             <Row>
                                 <ul class="list">
@@ -31,10 +41,10 @@ class MainPage extends React.Component{
                                         <img alt="test1" src="https://static-cdn.jtvnw.net/jtv_user_pictures/ddd88d33-6c4f-424f-9246-5f4978c93148-profile_image-150x150.png"></img>
                                     </li>
                                     <li>
-                                        <img src="https://static-cdn.jtvnw.net/jtv_user_pictures/f3591dbe4ee3d94b-profile_image-150x150.png"></img>
+                                        <img alt="test1" src="https://static-cdn.jtvnw.net/jtv_user_pictures/f3591dbe4ee3d94b-profile_image-150x150.png"></img>
                                     </li>
                                     <li>
-                                        <img src="https://static-cdn.jtvnw.net/jtv_user_pictures/beeafc17-3ebe-4e1d-b250-404f1ea56988-profile_image-150x150.png"></img>
+                                        <img alt="test1" src="https://static-cdn.jtvnw.net/jtv_user_pictures/beeafc17-3ebe-4e1d-b250-404f1ea56988-profile_image-150x150.png"></img>
                                     </li>
                                 </ul>
                             </Row>
@@ -42,12 +52,14 @@ class MainPage extends React.Component{
                                 <Col xs='9'>
                                     <Form>
                                         <Form.Group controlID='formStreamer'>
-                                            <Form.Control type="lg" type="text" placeholder="Type Twitch Name Here"></Form.Control>
+                                            <Form.Control type="lg" type="text" value={this.state.inputValue} onChange={this.handleChange.bind(this)} placeholder="Type Twitch Name Here"></Form.Control>
                                         </Form.Group>
                                     </Form>
                                 </Col>
                                 <Col xs='3'>
-                                    <Button variant="outline-light" type="submit" block>Play</Button>
+                                    <Link to={'/twitch/' + this.state.inputValue}>
+                                        <Button variant="outline-light" block><i class="far fa-play-circle"></i> Play</Button>
+                                    </Link>
                                 </Col>
                             </Row>
                         </Container>

@@ -1,20 +1,29 @@
 import React from 'react';
+import { useParams } from "react-router-dom"
 import {Button, Container, Row, Col} from 'react-bootstrap';
 import data from '../test.json'
 import Embed from './Embed'
+import CountUp from 'react-countup'
 
 class Game extends React.Component{
     state = {
-        name: "XQCOW Test",
+        name: "Default Name",
         clipList: data,
+        apiClipList: [],
         leftClip: [],
         rightClip: [],
         gameScore: 0,
         loseState: false,
+        isLoading: false
     };
 
     componentDidMount(){
         this.setClips()
+        this.getTwitchClips()
+    }
+
+    getTwitchClips(){
+
     }
 
     checkViews(id){
@@ -45,15 +54,13 @@ class Game extends React.Component{
         let rand1 = Math.floor(Math.random() * 100);
         let rand2 = Math.floor(Math.random() * 100);
 
-        console.log('leftclip', this.state.clipList.data[rand1])
+        console.log('leftclip', typeof this.state.clipList.data[rand1])
         console.log('rightclip', this.state.clipList.data[rand2])
 
         this.setState({leftClip: this.state.clipList.data[rand1]})
         this.setState({rightClip: this.state.clipList.data[rand2]})
 
         this.setState({name: this.state.clipList.data[rand1].broadcaster_name})
-
-        console.log('leftclip embedurl', this.state.leftClip)
     }
 
     nextClips(){
@@ -70,14 +77,16 @@ class Game extends React.Component{
         <Row>
             <Col>
                 <Embed embedURL = {this.state.leftClip.embed_url}></Embed>
-                <p>Title: {this.state.leftClip.title}</p>
-                <p>Views: {this.state.leftClip.view_count}</p>
+                <p class='clipTitle'>{this.state.leftClip.title}</p>
+                <p>Views:</p>
+                <CountUp end={1200000} duration={5}></CountUp>
+                
             </Col>
             <Col>
                 <Embed embedURL = {this.state.rightClip.embed_url}></Embed>
-                <p>Title: {this.state.rightClip.title}</p>
+                <p class='clipTitle'>{this.state.rightClip.title}</p>
                 <p id='rightViews' hidden={true}>Views: {this.state.rightClip.view_count}</p>
-                <Button id="higher" onClick={handleClick}>Higher</Button>
+                <Button variant='outline-primary' id="higher" onClick={handleClick}>Higher</Button>
                 <Button id="lower" onClick={handleClick}>Lower</Button>
             </Col>
         </Row>
@@ -91,9 +100,10 @@ class Game extends React.Component{
                     <Row>
                         <h2 class='twitchFont'>High or Low</h2>
                         <div class="scoreBoard">
-                            <h1>{this.state.name}</h1>
-                            <h2>Game Score: {this.state.gameScore}</h2>
+                            <img class="twitchNamePic" alt="twitchNametest" src="https://static-cdn.jtvnw.net/jtv_user_pictures/xqcow-profile_image-9298dca608632101-70x70.jpeg"></img>
+                            <p class="twitchName">{this.state.name}</p>
                         </div>
+                        <p class="gameScore">Game Score: {this.state.gameScore}</p>
                     </Row>
                     {this.renderGameState()}
                 </Container>

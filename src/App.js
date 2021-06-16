@@ -3,7 +3,7 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Game from './components/Game.js'
 import Game2 from './components/Game2.js'
-import { BrowserRouter, Switch, Route, Router, Redirect } from 'react-router-dom';
+import { BrowserRouter, Switch, Route} from 'react-router-dom';
 import MainPage from './components/MainPage.js'
 
 class App extends React.Component{

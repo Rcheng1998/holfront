@@ -4,7 +4,6 @@ import {Button, Container, Row, Col} from 'react-bootstrap';
 import axios from 'axios'
 import data from '../test.json'
 import Embed from './Embed'
-import CountUp from 'react-countup'
 import ReactLoading from 'react-loading';
 
 class Game2 extends React.Component{

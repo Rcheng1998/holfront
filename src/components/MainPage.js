@@ -1,6 +1,6 @@
 import React from 'react';
 import {Button, Container, Row, Col, Form} from 'react-bootstrap';
-import { Redirect, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 class MainPage extends React.Component{
     state = {

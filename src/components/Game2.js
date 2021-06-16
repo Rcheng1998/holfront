@@ -106,18 +106,20 @@ class Game2 extends React.Component{
         let handleClick = e => this.checkViews(e.target.id)
         return(
         <Container fluid>
-            <Row>
-                <Col>
+            <Row className="justify-content-md-center">
+                <Col md='5'>
                     <Embed embedURL = {this.state.leftClip.embed_url}></Embed>
                     <p class='clipTitle'>{this.state.leftClip.title}</p>
                     <p>Views: {this.state.leftClip.view_count ? this.state.leftClip.view_count.toLocaleString('en') : this.state.leftClip.view_count}</p>
                 </Col>
-                <Col>
+                <Col className="centerArrow" md='auto'>
+                    <Button className="gameButton" variant='outline-light' id="higher" onClick={handleClick}><i class="fas fa-arrow-up"></i> Higher</Button>
+                    <Button className="gameButton" variant='outline-light' id="lower" onClick={handleClick}><i class="fas fa-arrow-down"></i> Lower</Button>
+                </Col>
+                <Col md='5'>
                     <Embed embedURL = {this.state.rightClip.embed_url}></Embed>
                     <p class='clipTitle'>{this.state.rightClip.title}</p>
                     <p id='rightViews' hidden={true}>Views: {this.state.rightClip.view_count}</p>
-                    <Button className="gameButton" variant='outline-light' id="higher" onClick={handleClick}><i class="fas fa-arrow-up"></i> Higher</Button>
-                    <Button className="gameButton" variant='outline-light' id="lower" onClick={handleClick}><i class="fas fa-arrow-down"></i> Lower</Button>
                 </Col>
             </Row>
         </Container>

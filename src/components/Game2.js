@@ -60,26 +60,67 @@ class Game2 extends React.Component{
 
         this.setState({leftClip: this.state.apiClipList.data[rand1]})
         this.setState({rightClip: this.state.apiClipList.data[rand2]})
+
+        // Set gamescore to 0
+
+        this.setState({gameScore: 0})
+    }
+
+    checkViews(id){
+        if(id === 'higher'){
+            if(this.state.leftClip.view_count < this.state.rightClip.view_count){
+                console.log('Correct!')
+                this.setState({gameScore: this.state.gameScore + 1})
+                this.winState()
+            }
+            else{
+                console.log('Wrong! leftclip:', this.state.leftClip.view_count, 'rightclip:', this.state.rightClip.view_count)
+                this.setInitialGame()
+            }
+        }
+        else if(id === 'lower'){
+            if(this.state.leftClip.view_count > this.state.rightClip.view_count){
+                console.log('Correct')
+                this.setState({gameScore: this.state.gameScore + 1})
+                this.winState()
+            }
+            else{
+                console.log('Wrong! leftclip:', this.state.leftClip.view_count, 'rightclip:', this.state.rightClip.view_count)
+                this.setInitialGame()
+            }
+        }
+    }
+
+    winState(){
+        // Switches rightClip with leftClip
+        this.setState({leftClip: this.state.rightClip})
+
+        let rand2 = Math.floor(Math.random() * this.state.apiClipList.data.length);
+
+        this.setState({rightClip: this.state.clipList.data[rand2]})
+
+        this.renderGameState()
     }
 
     renderGameState(){
         let handleClick = e => this.checkViews(e.target.id)
-        console.log('rendergamestate', this.state.rightClip.view_count)
         return(
-        <Row>
-            <Col>
-                <Embed embedURL = {this.state.leftClip.embed_url}></Embed>
-                <p class='clipTitle'>{this.state.leftClip.title}</p>
-                <p>Views: {(this.state.leftClip.view_count)}</p>
-            </Col>
-            <Col>
-                <Embed embedURL = {this.state.rightClip.embed_url}></Embed>
-                <p class='clipTitle'>{this.state.rightClip.title}</p>
-                <p id='rightViews' hidden={false}>Views: {this.state.rightClip.view_count}</p>
-                <Button variant='outline-primary' id="higher" onClick={handleClick}>Higher</Button>
-                <Button id="lower" onClick={handleClick}>Lower</Button>
-            </Col>
-        </Row>
+        <Container fluid>
+            <Row>
+                <Col>
+                    <Embed embedURL = {this.state.leftClip.embed_url}></Embed>
+                    <p class='clipTitle'>{this.state.leftClip.title}</p>
+                    <p>Views: {this.state.leftClip.view_count ? this.state.leftClip.view_count.toLocaleString('en') : this.state.leftClip.view_count}</p>
+                </Col>
+                <Col>
+                    <Embed embedURL = {this.state.rightClip.embed_url}></Embed>
+                    <p class='clipTitle'>{this.state.rightClip.title}</p>
+                    <p id='rightViews' hidden={true}>Views: {this.state.rightClip.view_count}</p>
+                    <Button className="gameButton" variant='outline-light' id="higher" onClick={handleClick}><i class="fas fa-arrow-up"></i> Higher</Button>
+                    <Button className="gameButton" variant='outline-light' id="lower" onClick={handleClick}><i class="fas fa-arrow-down"></i> Lower</Button>
+                </Col>
+            </Row>
+        </Container>
         )
     }
 
@@ -104,8 +145,8 @@ class Game2 extends React.Component{
                             </div>
                             <p class="gameScore">Game Score: {this.state.gameScore}</p>
                         </Row>
-                        {this.renderGameState()}
                     </Container>
+                        {this.renderGameState()}
                 </div>
             )
         }

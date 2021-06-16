@@ -8,17 +8,16 @@
 }
 
 .holder{
-  max-width:75%x;
-  max-height:75%;
-  width: 600px;
-  height: 600px;
+  overflow: hidden;
   position: relative;
+  height: 60vh;
   margin: 0 auto;
 }
 
 .frame{
-  width: 100%;
+  width: 80%;
   height: 100%;
+  border: 0;
 }
 
 .bar{
@@ -84,6 +83,8 @@
 
 .clipTitle{
   font-size: 1.2rem;
+  font-family: 'Poppins';
+  font-weight: 400;
 }
 
 .scoreBoard{
@@ -111,6 +112,7 @@
 
 .gameScore{
   font-size: 1.2rem;
+  padding-top: 1%;
 }
 
 .loading{
@@ -126,4 +128,9 @@
 .spinning{
   margin-top: 10%;
   margin-left: 25%;
+}
+
+.gameButton{
+  margin-left: 1%;
+  margin-right: 1%;
 }

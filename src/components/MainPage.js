@@ -21,8 +21,8 @@ class MainPage extends React.Component{
                     <div class="inner">
                         <Container>
                             <Row>
-                            <h1 class="twitchFont">Twitch</h1>
-                            <h1 class="twitchFont">High or Low</h1>
+                            <h1 class="twitchFont">SOCIAL</h1>
+                            <h1 class="twitchFont">HIGH or LOW</h1>
                             <p class="subTitle">Enter your favorite streamer and try to guess if their clip is higher or lower!</p>
                             </Row>
                             <Row>

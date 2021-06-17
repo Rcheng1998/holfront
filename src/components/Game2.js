@@ -160,7 +160,7 @@ class Game2 extends React.Component{
                 <Col md='5'>
                     <Embed embedURL = {this.state.leftClip.embed_url}></Embed>
                     <p class='clipTitle'>{this.state.leftClip.title}</p>
-                    <p className="rightViewCount">Views: {this.state.leftClip.view_count ? this.state.leftClip.view_count.toLocaleString('en') : this.state.leftClip.view_count}</p>
+                    <p className="rightViewCount">📈 {this.state.leftClip.view_count ? this.state.leftClip.view_count.toLocaleString('en') : this.state.leftClip.view_count}</p>
                 </Col>
                 <Col className="centerArrow" md='auto'>
                 <Reward
@@ -198,7 +198,7 @@ class Game2 extends React.Component{
                                 <img class="twitchNamePic" alt="" src={this.state.profilepic}></img>
                                 <p class="twitchName">{this.state.name}</p>
                             </div>
-                            <p class="gameScore">Game Score: {this.state.gameScore}</p>
+                            <p class="gameScore">Score: {this.state.gameScore}</p>
                         </Row>
                     </Container>
                     <div className="gameRender">

@@ -2,7 +2,6 @@ import React from 'react';
 import { withRouter } from "react-router-dom"
 import {Button, Container, Row, Col} from 'react-bootstrap';
 import axios from 'axios'
-import data from '../test.json'
 import Embed from './Embed'
 import ReactLoading from 'react-loading';
 import CountUp from 'react-countup';
@@ -13,7 +12,6 @@ class Game2 extends React.Component{
 
         this.state = {
             name: "",
-            clipList: data,
             apiClipList: [],
             leftClip: [],
             rightClip: [],
@@ -110,7 +108,7 @@ class Game2 extends React.Component{
 
         let rand2 = Math.floor(Math.random() * this.state.apiClipList.data.length);
 
-        this.setState({rightClip: this.state.clipList.data[rand2]})
+        this.setState({rightClip: this.state.apiClipList.data[rand2]})
 
         this.renderGameState()
 

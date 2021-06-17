@@ -3,8 +3,10 @@ import { withRouter } from "react-router-dom"
 import {Button, Container, Row, Col} from 'react-bootstrap';
 import axios from 'axios'
 import Embed from './Embed'
-import ReactLoading from 'react-loading';
 import CountUp from 'react-countup';
+import Reward from 'react-rewards';
+import Footer from './Footer';
+import Loading from './Loading'
 
 class Game2 extends React.Component{
     constructor(props){
@@ -20,7 +22,8 @@ class Game2 extends React.Component{
             isLoading: true,
             paraUsername: props.match.params,
             profilepic: "",
-            viewButtonToggle: false
+            viewButtonToggle: false,
+            viewColor: "whiteView"
         };
     }
 
@@ -71,7 +74,10 @@ class Game2 extends React.Component{
 
     checkViews(id){
         // Enables button toggle for right clip's view count display
+        this.setState({viewColor: 'whiteView'})
         this.setState({viewButtonToggle: true})
+
+        this.reward.rewardMe()
 
         // Check button click and compare the view count
         setTimeout( () => {
@@ -129,10 +135,21 @@ class Game2 extends React.Component{
             );
         }
         else{
+            setTimeout( () => {
+                this.setState({viewColor: 'greenView'})
+            }, 2600)
             return(
-                <CountUp start={0} end={this.state.rightClip.view_count} separator={','} duration={5}></CountUp>
+                <div>
+                <CountUp className='rightViews' start={0} end={this.state.rightClip.view_count} separator={','} duration={2.5}></CountUp>
+                {this.winCelebration}
+                </div>
             );
         }
+    }
+
+    winCelebration(){
+        console.log("win celebration")
+        this.reward.rewardMe();
     }
 
     renderGameState(){
@@ -143,16 +160,22 @@ class Game2 extends React.Component{
                 <Col md='5'>
                     <Embed embedURL = {this.state.leftClip.embed_url}></Embed>
                     <p class='clipTitle'>{this.state.leftClip.title}</p>
-                    <p>Views: {this.state.leftClip.view_count ? this.state.leftClip.view_count.toLocaleString('en') : this.state.leftClip.view_count}</p>
+                    <p className="rightViewCount">Views: {this.state.leftClip.view_count ? this.state.leftClip.view_count.toLocaleString('en') : this.state.leftClip.view_count}</p>
                 </Col>
                 <Col className="centerArrow" md='auto'>
-                    <Button className="gameButton" variant='outline-light' id="higher" onClick={handleClick}><i class="fas fa-arrow-up"></i> Higher</Button>
-                    <Button className="gameButton" variant='outline-light' id="lower" onClick={handleClick}><i class="fas fa-arrow-down"></i> Lower</Button>
+                <Reward
+                    ref={(ref) => { this.reward = ref }}
+                    type='confetti'
+                    >
+                        <Button className="gameButton" variant='outline-light' id="higher" onClick={handleClick}><i class="fas fa-arrow-up"></i> Higher</Button>
+                        <br></br>
+                        <Button className="gameButton" variant='outline-light' id="lower" onClick={handleClick}><i class="fas fa-arrow-down"></i> Lower</Button>
+                    </Reward>
                 </Col>
                 <Col md='5'>
                     <Embed embedURL = {this.state.rightClip.embed_url}></Embed>
                     <p class='clipTitle'>{this.state.rightClip.title}</p>
-                    <p>{this.state.viewButtonToggle ? this.showRightClipView() : this.hideRightClipView()}</p>
+                    <p className={`rightViewCount ${this.state.viewColor}` }>{this.state.viewButtonToggle ? this.showRightClipView() : this.hideRightClipView()}</p>
                 </Col>
             </Row>
         </Container>
@@ -162,10 +185,7 @@ class Game2 extends React.Component{
     render(){
         if(this.state.isLoading){
             return(
-                <div class="loading">
-                    <h1>Loading game...</h1>
-                    <ReactLoading class="spinning" type="spinningBubbles" color="white" height={'50%'} width={'50%'}></ReactLoading>
-                </div>
+                <Loading></Loading>
             )
         }
         else{
@@ -181,7 +201,10 @@ class Game2 extends React.Component{
                             <p class="gameScore">Game Score: {this.state.gameScore}</p>
                         </Row>
                     </Container>
+                    <div className="gameRender">
                         {this.renderGameState()}
+                    </div>
+                    <Footer></Footer>
                 </div>
             )
         }

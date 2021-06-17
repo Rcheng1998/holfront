@@ -5,6 +5,7 @@ import axios from 'axios'
 import data from '../test.json'
 import Embed from './Embed'
 import ReactLoading from 'react-loading';
+import CountUp from 'react-countup';
 
 class Game2 extends React.Component{
     constructor(props){
@@ -20,7 +21,8 @@ class Game2 extends React.Component{
             loseState: false,
             isLoading: true,
             paraUsername: props.match.params,
-            profilepic: ""
+            profilepic: "",
+            viewButtonToggle: false
         };
     }
 
@@ -51,6 +53,9 @@ class Game2 extends React.Component{
     }
 
     setInitialGame(){
+        // set view button toggle and game state
+        this.setState({viewButtonToggle: false})
+        
         // Set initial two clips
         let rand1 = Math.floor(Math.random() * this.state.apiClipList.data.length);
         let rand2 = Math.floor(Math.random() * this.state.apiClipList.data.length);
@@ -67,28 +72,36 @@ class Game2 extends React.Component{
     }
 
     checkViews(id){
-        if(id === 'higher'){
-            if(this.state.leftClip.view_count < this.state.rightClip.view_count){
-                console.log('Correct!')
-                this.setState({gameScore: this.state.gameScore + 1})
-                this.winState()
+        // Enables button toggle for right clip's view count display
+        this.setState({viewButtonToggle: true})
+
+        // Check button click and compare the view count
+        setTimeout( () => {
+            if(id === 'higher'){
+                if(this.state.leftClip.view_count < this.state.rightClip.view_count){
+                    console.log('Correct!')
+                    this.setState({gameScore: this.state.gameScore + 1})
+                    this.winState()
+                }
+                else{
+                    console.log('Wrong! leftclip:', this.state.leftClip.view_count, 'rightclip:', this.state.rightClip.view_count)
+                    this.setInitialGame()
+                    this.renderGameState()
+                }
             }
-            else{
-                console.log('Wrong! leftclip:', this.state.leftClip.view_count, 'rightclip:', this.state.rightClip.view_count)
-                this.setInitialGame()
+            else if(id === 'lower'){
+                if(this.state.leftClip.view_count > this.state.rightClip.view_count){
+                    console.log('Correct')
+                    this.setState({gameScore: this.state.gameScore + 1})
+                    this.winState()
+                }
+                else{
+                    console.log('Wrong! leftclip:', this.state.leftClip.view_count, 'rightclip:', this.state.rightClip.view_count)
+                    this.setInitialGame()
+                    this.renderGameState()
+                }
             }
-        }
-        else if(id === 'lower'){
-            if(this.state.leftClip.view_count > this.state.rightClip.view_count){
-                console.log('Correct')
-                this.setState({gameScore: this.state.gameScore + 1})
-                this.winState()
-            }
-            else{
-                console.log('Wrong! leftclip:', this.state.leftClip.view_count, 'rightclip:', this.state.rightClip.view_count)
-                this.setInitialGame()
-            }
-        }
+        }, 5000, [])
     }
 
     winState(){
@@ -100,6 +113,28 @@ class Game2 extends React.Component{
         this.setState({rightClip: this.state.clipList.data[rand2]})
 
         this.renderGameState()
+
+        this.setState({viewButtonToggle: false})
+    }
+
+    hideRightClipView(){
+        return(
+            <p id='rightViews' hidden={true}>Views: {this.state.rightClip.view_count}</p>
+        );
+    }
+
+    showRightClipView(){
+        console.log("In showRightView()")
+        if(this.state.rightClip.view_count == null){
+            return(
+                <div>Test</div>
+            );
+        }
+        else{
+            return(
+                <CountUp start={0} end={this.state.rightClip.view_count} separator={','} duration={5}></CountUp>
+            );
+        }
     }
 
     renderGameState(){
@@ -119,7 +154,7 @@ class Game2 extends React.Component{
                 <Col md='5'>
                     <Embed embedURL = {this.state.rightClip.embed_url}></Embed>
                     <p class='clipTitle'>{this.state.rightClip.title}</p>
-                    <p id='rightViews' hidden={true}>Views: {this.state.rightClip.view_count}</p>
+                    <p>{this.state.viewButtonToggle ? this.showRightClipView() : this.hideRightClipView()}</p>
                 </Col>
             </Row>
         </Container>

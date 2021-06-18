@@ -159,7 +159,7 @@ class Game2 extends React.Component{
             }, 2600)
             return(
                 <div>
-                <CountUp className='rightViews' start={0} end={this.state.rightClip.view_count} separator={','} duration={2.5}></CountUp>
+                <CountUp className='rightViews' start={0} end={this.state.rightClip.view_count} separator={','} duration={2.5}>📈</CountUp>
                 </div>
             );
         }

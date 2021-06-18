@@ -8,9 +8,20 @@ class MainPage extends React.Component{
         inputValue: ""
     }
 
+    // Tracks keyboard input in input box
     handleChange(event){
         console.log('in handle change', event.target.value)
         this.setState({inputValue: event.target.value});
+    }
+
+    // Allows users to start the game with an enter keypress
+    handlekeyPress = (event) => {
+        if(event.key === 'Enter'){
+            console.log('In handlekey press')
+            return(
+                this.props.history.push('/twitch/' + this.state.inputValue)
+            )
+        }
     }
 
     render(){
@@ -52,7 +63,7 @@ class MainPage extends React.Component{
                             </Row>
                             <Row>
                                 <Col xs='9'>
-                                    <Form>
+                                    <Form onSubmit={e => { e.preventDefault(); }} onKeyPress={this.handlekeyPress}>
                                         <Form.Group>
                                             <Form.Control type="text" value={this.state.inputValue} onChange={this.handleChange.bind(this)} placeholder="Type Twitch Name Here"></Form.Control>
                                         </Form.Group>

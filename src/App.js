@@ -3,8 +3,10 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Game from './components/Game.js'
 import Game2 from './components/Game2.js'
-import { BrowserRouter, Switch, Route} from 'react-router-dom';
 import MainPage from './components/MainPage.js'
+import NotFoundPage from './components/NotFoundPage'
+
+import { BrowserRouter, Switch, Route, Redirect} from 'react-router-dom';
 
 class App extends React.Component{
 
@@ -20,6 +22,8 @@ class App extends React.Component{
             <Route exact path="/" component={MainPage}></Route>
             <Route path="/twitch/:username" component={Game2}></Route>
             <Route path="/test" component= { Game }></Route>
+            <Route component={ NotFoundPage }></Route>
+            <Redirect to='/404'></Redirect>
           </Switch>
         </BrowserRouter>
       </div>

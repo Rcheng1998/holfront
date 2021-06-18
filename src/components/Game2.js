@@ -77,35 +77,55 @@ class Game2 extends React.Component{
         this.setState({viewColor: 'whiteView'})
         this.setState({viewButtonToggle: true})
 
-        this.reward.rewardMe()
-
         // Check button click and compare the view count
-        setTimeout( () => {
             if(id === 'higher'){
                 if(this.state.leftClip.view_count < this.state.rightClip.view_count){
                     console.log('Correct!')
-                    this.setState({gameScore: this.state.gameScore + 1})
-                    this.winState()
+                    setTimeout( () => {
+                        this.reward.rewardMe()
+                        this.setState({viewColor: 'greenView'})
+                        setTimeout( () => {
+                            this.setState({gameScore: this.state.gameScore + 1})
+                            this.winState()
+                        }, 2000, [])
+                    }, 3000, [])
                 }
                 else{
                     console.log('Wrong! leftclip:', this.state.leftClip.view_count, 'rightclip:', this.state.rightClip.view_count)
-                    this.setInitialGame()
-                    this.renderGameState()
+                    setTimeout( () => {
+                        this.reward.punishMe()
+                        this.setState({viewColor: 'redView'})
+                        setTimeout( () => {
+                            this.setInitialGame()
+                            this.renderGameState()
+                        }, 2000, [])
+                    }, 3000, [])
                 }
             }
             else if(id === 'lower'){
                 if(this.state.leftClip.view_count > this.state.rightClip.view_count){
                     console.log('Correct')
-                    this.setState({gameScore: this.state.gameScore + 1})
-                    this.winState()
+                    setTimeout( () => {
+                        this.reward.rewardMe()
+                        this.setState({viewColor: 'greenView'})
+                        setTimeout( () => {
+                            this.setState({gameScore: this.state.gameScore + 1})
+                            this.winState()
+                        }, 2000, [])
+                    }, 3000, [])
                 }
                 else{
                     console.log('Wrong! leftclip:', this.state.leftClip.view_count, 'rightclip:', this.state.rightClip.view_count)
-                    this.setInitialGame()
-                    this.renderGameState()
+                    setTimeout( () => {
+                        this.reward.punishMe()
+                        this.setState({viewColor: 'redView'})
+                        setTimeout( () => {
+                            this.setInitialGame()
+                            this.renderGameState()
+                        }, 2000, [])
+                    }, 3000, [])
                 }
             }
-        }, 5000, [])
     }
 
     winState(){
@@ -136,24 +156,20 @@ class Game2 extends React.Component{
         }
         else{
             setTimeout( () => {
-                this.setState({viewColor: 'greenView'})
             }, 2600)
             return(
                 <div>
                 <CountUp className='rightViews' start={0} end={this.state.rightClip.view_count} separator={','} duration={2.5}></CountUp>
-                {this.winCelebration}
                 </div>
             );
         }
     }
 
     winCelebration(){
-        console.log("win celebration")
-        this.reward.rewardMe();
+
     }
 
     renderGameState(){
-        let handleClick = e => this.checkViews(e.target.id)
         return(
         <Container fluid>
             <Row className="justify-content-md-center">
@@ -163,13 +179,10 @@ class Game2 extends React.Component{
                     <p className="rightViewCount">📈 {this.state.leftClip.view_count ? this.state.leftClip.view_count.toLocaleString('en') : this.state.leftClip.view_count}</p>
                 </Col>
                 <Col className="centerArrow" md='auto'>
-                <Reward
-                    ref={(ref) => { this.reward = ref }}
-                    type='confetti'
-                    >
-                        <Button className="gameButton" variant='outline-light' id="higher" onClick={handleClick}><i class="fas fa-arrow-up"></i> Higher</Button>
+                <Reward ref={(ref) => { this.reward = ref }} type='confetti'>
+                        <Button className="gameButton" variant='outline-light' id="higher" onClick={ e => this.checkViews(e.target.id)}><i class="fas fa-arrow-up"></i> Higher</Button>
                         <br></br>
-                        <Button className="gameButton" variant='outline-light' id="lower" onClick={handleClick}><i class="fas fa-arrow-down"></i> Lower</Button>
+                        <Button className="gameButton" variant='outline-light' id="lower" onClick={e => this.checkViews(e.target.id)}><i class="fas fa-arrow-down"></i> Lower</Button>
                     </Reward>
                 </Col>
                 <Col md='5'>

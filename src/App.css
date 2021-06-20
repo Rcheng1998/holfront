@@ -61,7 +61,7 @@
 
 .subTitle{
   padding-top: 5%;
-  font-size: 1.1vw;
+  font-size: 1.1em;
   color: white;
 }
 
@@ -85,6 +85,7 @@
   font-size: 1.2rem;
   font-family: 'Poppins';
   font-weight: 400;
+  padding-top: 7%;
 }
 
 .scoreBoard{
@@ -114,6 +115,10 @@
 .gameScore{
   font-size: 1.1vw;
   padding-top: 1%;
+}
+
+.gameButtons{
+  margin-top: 2%;
 }
 
 .loading{
@@ -156,6 +161,7 @@
 .rightViewCount{
   font-size: 2.2em;
   -webkit-text-stroke: 1px rgba(0, 0, 0, 0.301);
+  padding-top: 1%;
 }
 
 .madeBy{

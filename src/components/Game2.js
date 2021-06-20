@@ -20,6 +20,7 @@ class Game2 extends React.Component{
             gameScore: 0,
             loseState: false,
             isLoading: true,
+            hideButton: false,
             paraUsername: props.match.params,
             profilepic: "",
             viewButtonToggle: false,
@@ -56,6 +57,7 @@ class Game2 extends React.Component{
     setInitialGame(){
         // set view button toggle and game state
         this.setState({viewButtonToggle: false})
+        this.setState({hideButton: false})
         
         // Set initial two clips
         let rand1 = Math.floor(Math.random() * this.state.apiClipList.data.length);
@@ -72,13 +74,14 @@ class Game2 extends React.Component{
         this.setState({gameScore: 0})
     }
 
-    checkViews(id){
+    checkViews(e){
         // Enables button toggle for right clip's view count display
         this.setState({viewColor: 'whiteView'})
         this.setState({viewButtonToggle: true})
+        this.setState({hideButton: true})
 
         // Check button click and compare the view count
-            if(id === 'higher'){
+            if(e.target.id === 'higher'){
                 if(this.state.leftClip.view_count < this.state.rightClip.view_count){
                     console.log('Correct!')
                     setTimeout( () => {
@@ -102,7 +105,7 @@ class Game2 extends React.Component{
                     }, 3000, [])
                 }
             }
-            else if(id === 'lower'){
+            else if(e.target.id === 'lower'){
                 if(this.state.leftClip.view_count > this.state.rightClip.view_count){
                     console.log('Correct')
                     setTimeout( () => {
@@ -139,6 +142,7 @@ class Game2 extends React.Component{
         this.renderGameState()
 
         this.setState({viewButtonToggle: false})
+        this.setState({hideButton: false})
     }
 
     hideRightClipView(){
@@ -165,30 +169,26 @@ class Game2 extends React.Component{
         }
     }
 
-    winCelebration(){
-
-    }
-
     renderGameState(){
+        
         return(
         <Container fluid>
             <Row className="justify-content-md-center">
-                <Col md='5'>
-                    <Embed embedURL = {this.state.leftClip.embed_url}></Embed>
-                    <p class='clipTitle'>{this.state.leftClip.title}</p>
+                <Col md='6'>
+                    <Embed embedURL = {this.state.leftClip.embed_url} title = {this.state.leftClip.title}></Embed>
                     <p className="rightViewCount">📈 {this.state.leftClip.view_count ? this.state.leftClip.view_count.toLocaleString('en') : this.state.leftClip.view_count}</p>
                 </Col>
                 <Col className="centerArrow" md='auto'>
-                <Reward ref={(ref) => { this.reward = ref }} type='confetti'>
-                        <Button className="gameButton" variant='outline-light' id="higher" onClick={ e => this.checkViews(e.target.id)}><i class="fas fa-arrow-up"></i> Higher</Button>
-                        <br></br>
-                        <Button className="gameButton" variant='outline-light' id="lower" onClick={e => this.checkViews(e.target.id)}><i class="fas fa-arrow-down"></i> Lower</Button>
-                    </Reward>
                 </Col>
-                <Col md='5'>
-                    <Embed embedURL = {this.state.rightClip.embed_url}></Embed>
-                    <p class='clipTitle'>{this.state.rightClip.title}</p>
-                    <p className={`rightViewCount ${this.state.viewColor}` }>{this.state.viewButtonToggle ? this.showRightClipView() : this.hideRightClipView()}</p>
+                <Col md='6'>
+                    <Embed embedURL = {this.state.rightClip.embed_url} title={this.state.rightClip.title}></Embed>
+                    <div hidden={this.state.hideButton} className="gameButtons">
+                        <Button className="gameButton" variant='outline-light' id="higher" onClick={ e => this.checkViews(e)}><i class="fas fa-arrow-up"></i> Higher</Button>
+                        <Button className="gameButton" variant='outline-light' id="lower" onClick={e => this.checkViews(e)}><i class="fas fa-arrow-down"></i> Lower</Button>
+                    </div>
+                    <Reward ref={(ref) => { this.reward = ref }} type='confetti' config={{springAnimation: false, decay: .93}}>
+                        <p className={`rightViewCount ${this.state.viewColor}` }>{this.state.viewButtonToggle ? this.showRightClipView() : this.hideRightClipView()}</p>
+                    </Reward>
                 </Col>
             </Row>
         </Container>
@@ -206,12 +206,12 @@ class Game2 extends React.Component{
                 <div>
                     <Container>
                         <Row>
-                            <h2 class='twitchFont'>High or Low</h2>
-                            <div class="scoreBoard">
-                                <img class="twitchNamePic" alt="" src={this.state.profilepic}></img>
-                                <p class="twitchName">{this.state.name}</p>
+                            <h2 className='twitchFont'>High or Low</h2>
+                            <div className="scoreBoard">
+                                <img className="twitchNamePic" alt="" src={this.state.profilepic}></img>
+                                <p className="twitchName">{this.state.name}</p>
                             </div>
-                            <p class="gameScore">Score: {this.state.gameScore}</p>
+                            <p className="gameScore">Score: {this.state.gameScore}</p>
                         </Row>
                     </Container>
                     <div className="gameRender">

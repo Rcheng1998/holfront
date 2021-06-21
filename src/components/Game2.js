@@ -8,6 +8,7 @@ import Reward from 'react-rewards';
 import Footer from './Footer';
 import Loading from './Loading'
 
+
 class Game2 extends React.Component{
     constructor(props){
         super(props)
@@ -17,15 +18,20 @@ class Game2 extends React.Component{
             apiClipList: [],
             leftClip: [],
             rightClip: [],
+            clipsAdded: [],
             gameScore: 0,
             loseState: false,
             isLoading: true,
             hideButton: false,
+            showModal: false,
             paraUsername: props.match.params,
             profilepic: "",
             viewButtonToggle: false,
             viewColor: "whiteView"
         };
+
+        this.handleOpenModal = this.handleOpenModal.bind(this);
+        this.handleCloseModal = this.handleCloseModal.bind(this);
     }
 
     async componentDidMount(){
@@ -54,14 +60,24 @@ class Game2 extends React.Component{
         this.setInitialGame()
     }
 
+    handleOpenModal () {
+        this.setState({ showModal: true });
+      }
+      
+    handleCloseModal () {
+    this.setState({ showModal: false });
+    }
+
     setInitialGame(){
         // set view button toggle and game state
         this.setState({viewButtonToggle: false})
         this.setState({hideButton: false})
         
-        // Set initial two clips
+        // Set initial two clips and add them to clips added
         let rand1 = Math.floor(Math.random() * this.state.apiClipList.data.length);
         let rand2 = Math.floor(Math.random() * this.state.apiClipList.data.length);
+        let addRandList = [rand1, rand2]
+        this.setState({clipsAdded:[...this.state.clipsAdded, addRandList]})
 
         console.log('leftclip', this.state.apiClipList.data)
         console.log('rightclip', this.state.apiClipList.data[rand2])
@@ -88,7 +104,6 @@ class Game2 extends React.Component{
                         this.reward.rewardMe()
                         this.setState({viewColor: 'greenView'})
                         setTimeout( () => {
-                            this.setState({gameScore: this.state.gameScore + 1})
                             this.winState()
                         }, 2000, [])
                     }, 3000, [])
@@ -99,8 +114,7 @@ class Game2 extends React.Component{
                         this.reward.punishMe()
                         this.setState({viewColor: 'redView'})
                         setTimeout( () => {
-                            this.setInitialGame()
-                            this.renderGameState()
+                            this.loseState()
                         }, 2000, [])
                     }, 3000, [])
                 }
@@ -112,7 +126,6 @@ class Game2 extends React.Component{
                         this.reward.rewardMe()
                         this.setState({viewColor: 'greenView'})
                         setTimeout( () => {
-                            this.setState({gameScore: this.state.gameScore + 1})
                             this.winState()
                         }, 2000, [])
                     }, 3000, [])
@@ -123,8 +136,7 @@ class Game2 extends React.Component{
                         this.reward.punishMe()
                         this.setState({viewColor: 'redView'})
                         setTimeout( () => {
-                            this.setInitialGame()
-                            this.renderGameState()
+                            this.loseState()
                         }, 2000, [])
                     }, 3000, [])
                 }
@@ -132,10 +144,20 @@ class Game2 extends React.Component{
     }
 
     winState(){
+        // +1 counter to gameScore
+        this.setState({gameScore: this.state.gameScore + 1})
+
         // Switches rightClip with leftClip
         this.setState({leftClip: this.state.rightClip})
 
         let rand2 = Math.floor(Math.random() * this.state.apiClipList.data.length);
+
+        while( (this.state.clipsAdded).includes(rand2)){
+            rand2 = Math.floor(Math.random() * this.state.apiClipList.data.length);
+        }
+
+        let addList = [rand2]
+        this.setState({clipsAdded:[...this.state.clipsAdded, addList]})
 
         this.setState({rightClip: this.state.apiClipList.data[rand2]})
 
@@ -143,6 +165,12 @@ class Game2 extends React.Component{
 
         this.setState({viewButtonToggle: false})
         this.setState({hideButton: false})
+    }
+
+    loseState(){
+        this.handleOpenModal()
+        this.setInitialGame()
+        this.renderGameState()
     }
 
     hideRightClipView(){
@@ -186,7 +214,7 @@ class Game2 extends React.Component{
                         <Button className="gameButton" variant='outline-light' id="higher" onClick={ e => this.checkViews(e)}><i class="fas fa-arrow-up"></i> Higher</Button>
                         <Button className="gameButton" variant='outline-light' id="lower" onClick={e => this.checkViews(e)}><i class="fas fa-arrow-down"></i> Lower</Button>
                     </div>
-                    <Reward ref={(ref) => { this.reward = ref }} type='confetti' config={{springAnimation: false, decay: .93}}>
+                    <Reward ref={(ref) => { this.reward = ref }} type='confetti' config={{springAnimation: false, decay: .975}}>
                         <p className={`rightViewCount ${this.state.viewColor}` }>{this.state.viewButtonToggle ? this.showRightClipView() : this.hideRightClipView()}</p>
                     </Reward>
                 </Col>
@@ -206,7 +234,7 @@ class Game2 extends React.Component{
                 <div>
                     <Container>
                         <Row>
-                            <h2 className='twitchFont'>High or Low</h2>
+                            <h2 className='twitchFont'>Social HoL</h2>
                             <div className="scoreBoard">
                                 <img className="twitchNamePic" alt="" src={this.state.profilepic}></img>
                                 <p className="twitchName">{this.state.name}</p>

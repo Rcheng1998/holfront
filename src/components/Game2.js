@@ -168,6 +168,9 @@ class Game2 extends React.Component{
     }
 
     loseState(){
+        if(this.state.gameScore > localStorage.getItem(this.state.paraUsername)){
+            localStorage.setItem(this.state.paraUsername, this.state.gameScore)
+        }
         this.handleOpenModal()
         this.setInitialGame()
         this.renderGameState()

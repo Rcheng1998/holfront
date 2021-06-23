@@ -81,16 +81,16 @@ class Game2 extends React.Component{
 
         // Set initial two clips and add them to clips added
         this.setState({clipsAdded: []})
-        let rand1 = Math.floor(Math.random() * this.state.apiClipList.data.length);
-        let rand2 = Math.floor(Math.random() * this.state.apiClipList.data.length);
+        let rand1 = Math.floor(Math.random() * this.state.apiClipList.length);
+        let rand2 = Math.floor(Math.random() * this.state.apiClipList.length);
         let addRandList = [rand1, rand2]
         this.setState({clipsAdded:[...this.state.clipsAdded, addRandList]})
 
-        console.log('leftclip', this.state.apiClipList.data)
-        console.log('rightclip', this.state.apiClipList.data[rand2])
+        console.log('leftclip', this.state.apiClipList)
+        console.log('rightclip', this.state.apiClipList[rand2])
 
-        this.setState({leftClip: this.state.apiClipList.data[rand1]})
-        this.setState({rightClip: this.state.apiClipList.data[rand2]})
+        this.setState({leftClip: this.state.apiClipList[rand1]})
+        this.setState({rightClip: this.state.apiClipList[rand2]})
 
         // Set gamescore to 0
 
@@ -157,16 +157,16 @@ class Game2 extends React.Component{
         // Switches rightClip with leftClip
         this.setState({leftClip: this.state.rightClip})
 
-        let rand2 = Math.floor(Math.random() * this.state.apiClipList.data.length);
+        let rand2 = Math.floor(Math.random() * this.state.apiClipList.length);
 
         while( (this.state.clipsAdded).includes(rand2)){
-            rand2 = Math.floor(Math.random() * this.state.apiClipList.data.length);
+            rand2 = Math.floor(Math.random() * this.state.apiClipList.length);
         }
 
         let addList = [rand2]
         this.setState({clipsAdded:[...this.state.clipsAdded, addList]})
 
-        this.setState({rightClip: this.state.apiClipList.data[rand2]})
+        this.setState({rightClip: this.state.apiClipList[rand2]})
 
         this.renderGameState()
 

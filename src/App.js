@@ -9,12 +9,15 @@ import ReactGA from 'react-ga'
 
 import { BrowserRouter, Switch, Route, Redirect} from 'react-router-dom';
 
+ReactGA.initialize('UA-199826519-1');
+
 class App extends React.Component{
   componentDidMount(){
     document.body.style.backgroundColor = "#6441A4"
-    ReactGA.initialize('UA-199826519-1');
     ReactGA.pageview(window.location.pathname + window.location.search);
   }
+
+  componentDidUpdate = () => ReactGA.pageview(window.location.pathname + window.location.search);
 
   render(){
     return (

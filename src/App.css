@@ -109,11 +109,11 @@
 
 .twitchName{
   padding-top: 1%;
-  font-size: 1.2vw;
+  font-size: 1.5em;
 }
 
 .gameScore{
-  font-size: 1.1vw;
+  font-size: 1.5em;
   padding-top: 1%;
 }
 
@@ -184,7 +184,7 @@
   border-radius: 5%;
   background-color:#6441A4;
   text-align: center;
-  box-shadow: 10px 10px 5px grey;
+  box-shadow: 5px 5px 2px rgba(0, 0, 0, 0.336);
 }
 
 .Overlay {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouter } from "react-router-dom"
+import { withRouter, Link } from "react-router-dom"
 import {Button, Container, Row, Col} from 'react-bootstrap';
 import axios from 'axios'
 import Embed from './Embed'
@@ -78,8 +78,9 @@ class Game2 extends React.Component{
         // set view button toggle and game state
         this.setState({viewButtonToggle: false})
         this.setState({hideButton: false})
-        
+
         // Set initial two clips and add them to clips added
+        this.setState({clipsAdded: []})
         let rand1 = Math.floor(Math.random() * this.state.apiClipList.data.length);
         let rand2 = Math.floor(Math.random() * this.state.apiClipList.data.length);
         let addRandList = [rand1, rand2]
@@ -217,10 +218,14 @@ class Game2 extends React.Component{
                 </Col>
                 <Col className="centerArrow" md='auto'>
                     <ReactModal isOpen={this.state.showModal} contentLabel="Lose Modal" onRequestClose={this.handleCloseModal} className="Modal" overlayClassName="Overlay" shouldCloseOnOverlayClick={true}>
-                        <div>
+                        <div className="loseModalText">
                             <h2>You Lose</h2>
                             <p>Highscore: {this.state.highScore}</p>
                             <p>Gamescore: {this.state.modalScore}</p>
+                            <Button className="gameButton" onClick={this.handleCloseModal} variant='outline-light'>Play Again</Button>
+                            <Link to="/">
+                                <Button className="gameButton" variant='outline-light'>Home</Button>
+                            </Link>
                         </div>
                     </ReactModal>
                 </Col>

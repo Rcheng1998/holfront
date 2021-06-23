@@ -173,13 +173,13 @@ class Game2 extends React.Component{
         this.setState({hideButton: false})
     }
 
-    async loseState(){
+    loseState(){
         if(this.state.gameScore > localStorage.getItem(this.state.paraUsername)){
             localStorage.setItem(this.state.paraUsername, this.state.gameScore)
         }
-        await this.handleOpenModal()
-        await this.setInitialGame()
-        await this.renderGameState()
+        this.handleOpenModal()
+        this.setInitialGame()
+        this.renderGameState()
     }
 
     hideRightClipView(){

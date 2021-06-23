@@ -7,6 +7,7 @@ import CountUp from 'react-countup';
 import Reward from 'react-rewards';
 import Footer from './Footer';
 import Loading from './Loading'
+import ReactModal from 'react-modal';
 
 
 class Game2 extends React.Component{
@@ -27,7 +28,9 @@ class Game2 extends React.Component{
             paraUsername: props.match.params,
             profilepic: "",
             viewButtonToggle: false,
-            viewColor: "whiteView"
+            viewColor: "whiteView",
+            modalScore: 0,
+            highScore: 0
         };
 
         this.handleOpenModal = this.handleOpenModal.bind(this);
@@ -61,6 +64,9 @@ class Game2 extends React.Component{
     }
 
     handleOpenModal () {
+        let highscore = localStorage.getItem(this.state.paraUsername);
+        this.setState({highScore: highscore})
+        this.setState({modalScore: this.state.gameScore})
         this.setState({ showModal: true });
       }
       
@@ -167,13 +173,13 @@ class Game2 extends React.Component{
         this.setState({hideButton: false})
     }
 
-    loseState(){
+    async loseState(){
         if(this.state.gameScore > localStorage.getItem(this.state.paraUsername)){
             localStorage.setItem(this.state.paraUsername, this.state.gameScore)
         }
-        this.handleOpenModal()
-        this.setInitialGame()
-        this.renderGameState()
+        await this.handleOpenModal()
+        await this.setInitialGame()
+        await this.renderGameState()
     }
 
     hideRightClipView(){
@@ -210,6 +216,13 @@ class Game2 extends React.Component{
                     <p className="rightViewCount">📈 {this.state.leftClip.view_count ? this.state.leftClip.view_count.toLocaleString('en') : this.state.leftClip.view_count}</p>
                 </Col>
                 <Col className="centerArrow" md='auto'>
+                    <ReactModal isOpen={this.state.showModal} contentLabel="Lose Modal" onRequestClose={this.handleCloseModal} className="Modal" overlayClassName="Overlay" shouldCloseOnOverlayClick={true}>
+                        <div>
+                            <h2>You Lose</h2>
+                            <p>Highscore: {this.state.highScore}</p>
+                            <p>Gamescore: {this.state.modalScore}</p>
+                        </div>
+                    </ReactModal>
                 </Col>
                 <Col md='6'>
                     <Embed embedURL = {this.state.rightClip.embed_url} title={this.state.rightClip.title}></Embed>

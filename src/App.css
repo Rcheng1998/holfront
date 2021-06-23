@@ -174,3 +174,24 @@
   width: 30vh;
   height: 30vh;
 }
+
+.Modal {
+  position: absolute;
+  top: 30%;
+  left: 35%;
+  right: 35%;
+  bottom: 30%;
+  border-radius: 5%;
+  background-color:#6441A4;
+  text-align: center;
+  box-shadow: 10px 10px 5px grey;
+}
+
+.Overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.425);
+}

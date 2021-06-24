@@ -6,7 +6,7 @@ import { Alert } from 'react-bootstrap'
 class Loading extends React.Component{
     render(){
         return(
-            <div class="loading">
+            <div className="loading">
                 <h1>Loading game...</h1>
                 <ReactLoading className="spinning" type="spinningBubbles" color="white" height={'50%'} width={'50%'}></ReactLoading>
                 <br></br>

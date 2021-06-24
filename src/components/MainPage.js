@@ -28,13 +28,17 @@ class MainPage extends React.Component{
         return(
         <div>
             <div className='outer'>
-                <div class="middle">
-                    <div class="inner">
+                <div className="middle">
+                    <div className="inner">
                         <Container>
                             <Row>
-                            <h1 class="twitchFont">SOCIAL</h1>
-                            <h1 class="twitchFont">HIGH or LOW</h1>
-                            <p class="subTitle">Enter your favorite streamer and try to guess if their clip is higher or lower!</p>
+                                <Col md={12}>
+                                    <h1 class="twitchFont">SOCIAL</h1>
+                                    <h1 class="twitchFont">HIGH or LOW</h1>
+                                </Col>
+                            </Row>
+                            <Row>
+                                <p class="subTitle">Enter your favorite streamer and try to guess if their clip is higher or lower!</p>
                             </Row>
                             <Row>
                                 <ul class="list">
@@ -62,14 +66,14 @@ class MainPage extends React.Component{
                                 </ul>
                             </Row>
                             <Row>
-                                <Col xs='9'>
+                                <Col md='9'>
                                     <Form onSubmit={e => { e.preventDefault(); }} onKeyPress={this.handlekeyPress}>
                                         <Form.Group>
                                             <Form.Control type="text" value={this.state.inputValue} onChange={this.handleChange.bind(this)} placeholder="Type Twitch Name Here"></Form.Control>
                                         </Form.Group>
                                     </Form>
                                 </Col>
-                                <Col xs='3'>
+                                <Col md='3'>
                                     <Link to={'/twitch/' + this.state.inputValue}>
                                         <Button variant="outline-light" block> <i class="far fa-play-circle"></i> Play</Button>
                                     </Link>

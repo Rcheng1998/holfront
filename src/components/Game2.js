@@ -8,6 +8,7 @@ import Reward from 'react-rewards';
 import Footer from './Footer';
 import Loading from './Loading'
 import ReactModal from 'react-modal';
+import ReactGA from 'react-ga'
 
 
 class Game2 extends React.Component{
@@ -38,6 +39,8 @@ class Game2 extends React.Component{
     }
 
     async componentDidMount(){
+        ReactGA.ga('send', 'pageview', window.location.pathname);
+
         const {username} = this.props.match.params;
         this.setState({paraUsername: username})
         
@@ -214,29 +217,45 @@ class Game2 extends React.Component{
             <Row className="justify-content-md-center">
                 <Col md='6'>
                     <Embed embedURL = {this.state.leftClip.embed_url} title = {this.state.leftClip.title}></Embed>
-                    <p className="rightViewCount">📈 {this.state.leftClip.view_count ? this.state.leftClip.view_count.toLocaleString('en') : this.state.leftClip.view_count}</p>
+                    <p className="leftViewCount">📈 {this.state.leftClip.view_count ? this.state.leftClip.view_count.toLocaleString('en') : this.state.leftClip.view_count}</p>
                 </Col>
                 <Col className="centerArrow" md='auto'>
                     <ReactModal isOpen={this.state.showModal} contentLabel="Lose Modal" onRequestClose={this.handleCloseModal} className="Modal" overlayClassName="Overlay" shouldCloseOnOverlayClick={true}>
-                        <div className="loseModalText">
-                            <h2>You Lose</h2>
-                            <p>Highscore: {this.state.highScore}</p>
-                            <p>Gamescore: {this.state.modalScore}</p>
-                            <Button className="gameButton" onClick={this.handleCloseModal} variant='outline-light'>Play Again</Button>
-                            <Link to="/">
-                                <Button className="gameButton" variant='outline-light'>Home</Button>
-                            </Link>
+                        <div className="outer">
+                            <div className="middle">
+                                <div className="innerModal subTitle">
+                                    <Container>
+                                        <h1>You lost!</h1>
+                                        <br></br>
+                                        <div className="scoreBoard">
+                                            <img className="twitchNamePic" alt="" src={this.state.profilepic}></img>
+                                            <p className="twitchName">{this.state.name}</p>
+                                        </div>
+                                        <br></br>
+                                        <h4>Highscore - {this.state.highScore}</h4>
+                                        <h4>Score - {this.state.modalScore}</h4>
+                                        <br></br>
+                                        <Button className="gameButton" onClick={this.handleCloseModal} variant='outline-light'>Play Again</Button>
+                                        <Link to="/">
+                                            <Button className="gameButton" variant='outline-light'>Home</Button>
+                                        </Link>
+                                        <a href="https://www.buymeacoffee.com/RickC">                                       
+                                            <Button className="gameButton" variant='outline-light'>Buy Me ☕</Button>
+                                        </a>
+                                    </Container>
+                                </div>
+                            </div>
                         </div>
                     </ReactModal>
                 </Col>
                 <Col md='6'>
                     <Embed embedURL = {this.state.rightClip.embed_url} title={this.state.rightClip.title}></Embed>
                     <div hidden={this.state.hideButton} className="gameButtons">
-                        <Button className="gameButton" variant='outline-light' id="higher" onClick={ e => this.checkViews(e)}><i class="fas fa-arrow-up"></i> Higher</Button>
-                        <Button className="gameButton" variant='outline-light' id="lower" onClick={e => this.checkViews(e)}><i class="fas fa-arrow-down"></i> Lower</Button>
+                        <Button className="gameButton" variant='outline-light' id="higher" onClick={ e => this.checkViews(e)}><i className="fas fa-arrow-up"></i> Higher</Button>
+                        <Button className="gameButton" variant='outline-light' id="lower" onClick={e => this.checkViews(e)}><i className="fas fa-arrow-down"></i> Lower</Button>
                     </div>
                     <Reward ref={(ref) => { this.reward = ref }} type='confetti' config={{springAnimation: false, decay: .975}}>
-                        <p className={`rightViewCount ${this.state.viewColor}` }>{this.state.viewButtonToggle ? this.showRightClipView() : this.hideRightClipView()}</p>
+                        <span className={`rightViewCount ${this.state.viewColor}` }>{this.state.viewButtonToggle ? this.showRightClipView() : this.hideRightClipView()}</span>
                     </Reward>
                 </Col>
             </Row>

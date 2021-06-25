@@ -4,7 +4,7 @@ class Embed extends React.Component{
 
     render(){
         return(
-            <div className='holder'>
+            <div className='holder fadeIn'>
                 <div className="bar">
                     <p className="clipTitle"> "{this.props.title}" </p>
                 </div>

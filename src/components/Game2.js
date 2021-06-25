@@ -194,20 +194,13 @@ class Game2 extends React.Component{
 
     showRightClipView(){
         console.log("In showRightView()")
-        if(this.state.rightClip.view_count == null){
-            return(
-                <div>Test</div>
-            );
-        }
-        else{
-            setTimeout( () => {
-            }, 2600)
-            return(
-                <div>
-                <CountUp className='rightViews' start={0} end={this.state.rightClip.view_count} separator={','} duration={2.5}>📈</CountUp>
-                </div>
-            );
-        }
+        setTimeout( () => {
+        }, 2600)
+        return(
+            <div>
+            <CountUp className='rightViews' start={0} end={this.state.rightClip.view_count} separator={','} duration={2.5}></CountUp>
+            </div>
+        );
     }
 
     renderGameState(){

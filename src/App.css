@@ -133,13 +133,15 @@
 }
 
 .loading{
-  position: absolute;
-  width: 400px;
-  height: 300px;
+  width: 20%;
+  height: 50%;
+	position: absolute;
+	top:0;
+	bottom: 0;
+	left: 0;
+	right: 0;
   z-index: 15;
-  top: 40%;
-  left: 50%;
-  margin: -100px 0 0 -200px;
+	margin: auto;
 }
 
 .spinning{
@@ -213,23 +215,56 @@
   background-color: rgba(0, 0, 0, 0.425);
 }
 
+.alertLoading{
+  margin-top: 20%;
+}
+
 @media only screen and (max-width: 600px) {
   .Modal {
-    left: 10%;
-    right: 10%;
+    left: 5%;
+    right: 5%;
     bottom: 25%;
     top: 25%;
   }
 
   .gameButtons{
-    margin-bottom: 100px;
+    margin-bottom: 20%;
+  }
+
+  .rightViews{
+    margin-bottom: 20%;
   }
 
   .rightViewCount{
-    margin-bottom: 100px;
+    margin-bottom: 20%;
   }
   
   .inner{
     width: 100%;
+  }
+
+  .bar{
+    height: 30%;
+  }
+
+  .scoreBoard{
+    padding-top: 5%;
+  }
+
+  .fixed-bottom{
+    margin-top: 20%;
+  }
+
+  .loading{
+    width: 90%;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+      opacity:0;
+  }
+  100% {
+      opacity:1;
   }
 }

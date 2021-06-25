@@ -3,6 +3,7 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Game from './components/Game.js'
 import Game2 from './components/Game2.js'
+import Youtube from './components/YoutubeGame'
 import MainPage from './components/MainPage.js'
 import NotFoundPage from './components/NotFoundPage'
 import ReactGA from 'react-ga'
@@ -27,6 +28,7 @@ class App extends React.Component{
             <Route exact path="/" component={MainPage}></Route>
             <Route path="/twitch/:username" component={Game2}></Route>
             <Route path="/test" component= { Game }></Route>
+            <Route path="/youtube" component={ Youtube}></Route>
             <Route component={ NotFoundPage }></Route>
             <Redirect to='/404'></Redirect>
           </Switch>

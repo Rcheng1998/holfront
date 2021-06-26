@@ -183,12 +183,6 @@ class Game2 extends React.Component{
         this.renderGameState()
     }
 
-    hideRightClipView(){
-        return(
-            <p id='rightViews' hidden={true}>Views: {this.state.rightClip.view_count}</p>
-        );
-    }
-
     showRightClipView(){
         console.log("In showRightView()")
         setTimeout( () => {
@@ -245,7 +239,7 @@ class Game2 extends React.Component{
                         <Button className="gameButton" variant='outline-light' id="lower" onClick={e => this.checkViews(e)}><i className="fas fa-arrow-down"></i> Lower</Button>
                     </div>
                     <Reward ref={(ref) => { this.reward = ref }} type='confetti' config={{springAnimation: false, decay: .975}}>
-                        <span className={`rightViewCount ${this.state.viewColor}` }>{this.state.viewButtonToggle ? this.showRightClipView() : this.hideRightClipView()}</span>
+                        <span className={`rightViewCount ${this.state.viewColor}` }>{this.state.viewButtonToggle ? this.showRightClipView() : ""}</span>
                     </Reward>
                 </Col>
             </Row>

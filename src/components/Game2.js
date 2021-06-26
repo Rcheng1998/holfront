@@ -87,8 +87,11 @@ class Game2 extends React.Component{
         this.setState({clipsAdded: []})
         let rand1 = Math.floor(Math.random() * this.state.apiClipList.length);
         let rand2 = Math.floor(Math.random() * this.state.apiClipList.length);
+        if(rand1 === rand2){
+            rand2 = Math.floor(Math.random() * this.state.gameList.length)
+        }
         let addRandList = [rand1, rand2]
-        this.setState({clipsAdded:[...this.state.clipsAdded, addRandList]})
+        this.setState({clipsAdded:[...this.state.clipsAdded, ...addRandList]})
 
         this.setState({leftClip: this.state.apiClipList[rand1]})
         this.setState({rightClip: this.state.apiClipList[rand2]})
@@ -96,6 +99,8 @@ class Game2 extends React.Component{
         // Set gamescore to 0
 
         this.setState({gameScore: 0})
+
+        console.log('setInitialGame ||', 'clipsAdded:', this.state.clipsAdded, 'leftClip:', this.state.apiClipList[rand1], 'rightClip:', this.state.apiClipList[rand2])
     }
 
     checkViews(e){
@@ -165,14 +170,16 @@ class Game2 extends React.Component{
         }
 
         let addList = [rand2]
-        this.setState({clipsAdded:[...this.state.clipsAdded, addList]})
+        this.setState({clipsAdded:[...this.state.clipsAdded, ...addList]})
 
         this.setState({rightClip: this.state.apiClipList[rand2]})
 
-        this.renderGameState()
-
         this.setState({viewButtonToggle: false})
         this.setState({hideButton: false})
+
+        console.log('winState ||', 'clipsAdded:', this.state.clipsAdded, 'rightClip:', this.state.apiClipList[rand2])
+
+        this.renderGameState()
     }
 
     loseState(){
@@ -181,8 +188,8 @@ class Game2 extends React.Component{
         }
         this.handleOpenModal()
         this.setInitialGame()
-        this.renderGameState()
         this.setState({viewButtonToggle: false})
+        this.renderGameState()
     }
 
     showRightClipView(){
@@ -193,9 +200,6 @@ class Game2 extends React.Component{
           const onStart = () => {
             console.log('Started!');
           };
-
-
-
           const onError = error => console.error(error);
 
         setTimeout( () => {

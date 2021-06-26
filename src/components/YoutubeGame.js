@@ -134,7 +134,7 @@ class YoutubeGame extends React.Component{
             rand2 = Math.floor(Math.random() * this.state.gameList.length)
         }
         let addRandList = [rand1, rand2]
-        this.setState({clipsAdded:[...this.state.clipsAdded, addRandList]})
+        this.setState({clipsAdded:[...this.state.clipsAdded, ...addRandList]})
 
         this.setState({leftClip: this.state.gameList[rand1]})
         this.setState({rightClip: this.state.gameList[rand2]})
@@ -144,6 +144,8 @@ class YoutubeGame extends React.Component{
         this.setState({gameScore: 0})
 
         this.setState({isLoading: false})
+
+        console.log('setInitialGame ||', 'clipsAdded:', this.state.clipsAdded, 'leftClip:', this.state.gameList[rand1], 'rightClip:', this.state.gameList[rand2])
     }
 
     checkViews(e){
@@ -213,14 +215,15 @@ class YoutubeGame extends React.Component{
         }
 
         let addList = [rand2]
-        this.setState({clipsAdded:[...this.state.clipsAdded, addList]})
+        this.setState({clipsAdded:[...this.state.clipsAdded, ...addList]})
 
         this.setState({rightClip: this.state.gameList[rand2]})
 
-        this.renderGameState()
-
         this.setState({viewButtonToggle: false})
         this.setState({hideButton: false})
+        this.renderGameState()
+
+        console.log('winState ||', 'clipsAdded:', this.state.clipsAdded, 'rightClip:', this.state.gameList[rand2])
     }
 
     loseState(){

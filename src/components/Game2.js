@@ -89,9 +89,6 @@ class Game2 extends React.Component{
         let addRandList = [rand1, rand2]
         this.setState({clipsAdded:[...this.state.clipsAdded, addRandList]})
 
-        console.log('leftclip', this.state.apiClipList)
-        console.log('rightclip', this.state.apiClipList[rand2])
-
         this.setState({leftClip: this.state.apiClipList[rand1]})
         this.setState({rightClip: this.state.apiClipList[rand2]})
 

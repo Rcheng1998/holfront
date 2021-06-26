@@ -15,6 +15,9 @@ class Footer extends React.Component{
                                 <NavLink href="/faq">FAQ</NavLink>
                             </NavItem>
                             <NavItem>
+                                <NavLink href="/youtube">Youtube</NavLink>
+                            </NavItem>
+                            <NavItem>
                                 <NavLink href="https://www.buymeacoffee.com/RickC">Support Me</NavLink>
                             </NavItem>
                             <NavItem>

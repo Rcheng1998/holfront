@@ -8,6 +8,7 @@ import Footer from './Footer';
 import CountUp from 'react-countup';
 import ReactModal from 'react-modal';
 import {Link} from 'react-router-dom'
+import ReactGA from 'react-ga'
 
 class YoutubeGame extends React.Component{
     constructor(props){
@@ -40,6 +41,8 @@ class YoutubeGame extends React.Component{
 
     async componentDidMount(){
         document.body.style.backgroundColor = "#770000"
+        ReactGA.pageview(window.location.pathname + window.location.search);
+
         let youtubeURL = this.state.channelID;
         const broadcastRes = await axios.get('https://youtube.googleapis.com/youtube/v3/channels?part=contentDetails&part=snippet&id=' + youtubeURL.channelId + '&key=AIzaSyA8fghL1wGnRSZWJG37YpBfSqCLK1_mYzs',{
             headers: {
@@ -122,7 +125,7 @@ class YoutubeGame extends React.Component{
         // set view button toggle and game state
         this.setState({viewButtonToggle: false})
         this.setState({hideButton: false})
-        
+
         // Set initial two clips and add them to clips added
         this.setState({clipsAdded: []})
         let rand1 = Math.floor(Math.random() * this.state.gameList.length);

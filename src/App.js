@@ -9,7 +9,7 @@ import NotFoundPage from './components/NotFoundPage'
 import YoutubePage from './components/YoutubePage';
 import ReactGA from 'react-ga'
 
-import { BrowserRouter, Switch, Route, Redirect} from 'react-router-dom';
+import { HashRouter, Switch, Route, Redirect} from 'react-router-dom';
 
 ReactGA.initialize('UA-199826519-1');
 
@@ -23,7 +23,7 @@ class App extends React.Component{
   render(){
     return (
       <div className="App">
-        <BrowserRouter>
+        <HashRouter>
           <Switch>
             <Route exact path="/" component={MainPage}></Route>
             <Route path="/twitch/:username" component={Game2}></Route>
@@ -33,7 +33,7 @@ class App extends React.Component{
             <Route component={ NotFoundPage }></Route>
             <Redirect to='/404'></Redirect>
           </Switch>
-        </BrowserRouter>
+        </HashRouter>
       </div>
     );
   }

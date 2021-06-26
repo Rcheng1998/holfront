@@ -40,6 +40,7 @@ class Game2 extends React.Component{
 
     async componentDidMount(){
         ReactGA.ga('send', 'pageview', window.location.pathname);
+        document.body.style.backgroundColor = '#6441A4'
 
         const {username} = this.props.match.params;
         this.setState({paraUsername: username})
@@ -181,15 +182,27 @@ class Game2 extends React.Component{
         this.handleOpenModal()
         this.setInitialGame()
         this.renderGameState()
+        this.setState({viewButtonToggle: false})
     }
 
     showRightClipView(){
-        console.log("In showRightView()")
+        const onComplete = () => {
+            console.log('Completed!');
+          };
+          
+          const onStart = () => {
+            console.log('Started!');
+          };
+
+
+
+          const onError = error => console.error(error);
+
         setTimeout( () => {
-        }, 2600)
+        }, 2600, [])
         return(
             <div>
-            <CountUp className='rightViews' start={0} end={this.state.rightClip.view_count} separator={','} duration={2.5}></CountUp>
+            <CountUp className='rightViews' start={0} end={this.state.rightClip.view_count} separator={','} duration={2} onComplete={onComplete} onStart={onStart} onError={onError}></CountUp>
             </div>
         );
     }
@@ -204,7 +217,7 @@ class Game2 extends React.Component{
                     <p className="leftViewCount">📈 {this.state.leftClip.view_count ? this.state.leftClip.view_count.toLocaleString('en') : this.state.leftClip.view_count}</p>
                 </Col>
                 <Col className="centerArrow" md='auto'>
-                    <ReactModal isOpen={this.state.showModal} contentLabel="Lose Modal" onRequestClose={this.handleCloseModal} className="Modal" overlayClassName="Overlay" shouldCloseOnOverlayClick={true}>
+                    <ReactModal isOpen={this.state.showModal} contentLabel="Lose Modal" onRequestClose={this.handleCloseModal} className="Modal" overlayClassName="Overlay" shouldCloseOnOverlayClick={true} ariaHideApp={false}>
                         <div className="outer">
                             <div className="middle">
                                 <div className="innerModal subTitle">

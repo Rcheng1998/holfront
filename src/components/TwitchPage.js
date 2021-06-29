@@ -1,7 +1,6 @@
 import React from 'react';
 import {Button, Container, Row, Col, Form} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import Footer from './Footer.js'
 
 class TwitchPage extends React.Component{
     state = {

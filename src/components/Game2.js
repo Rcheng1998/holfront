@@ -5,7 +5,6 @@ import axios from 'axios'
 import Embed from './Embed'
 import CountUp from 'react-countup';
 import Reward from 'react-rewards';
-import Footer from './Footer';
 import Loading from './Loading'
 import ReactModal from 'react-modal';
 import ReactGA from 'react-ga'

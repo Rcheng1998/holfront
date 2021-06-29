@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, Container, Row, Col, Form, Jumbotron, Image} from 'react-bootstrap';
+import {Container, Row, Col} from 'react-bootstrap';
 import {Link} from 'react-router-dom'
 
 
@@ -37,7 +37,7 @@ class MainPage extends React.Component{
                                     <Row>
                                         <div className="gamePics">
                                             <Link to="/twitch">
-                                                <img src="https://blog.twitch.tv/assets/uploads/twitch-generic-email-1-1-1-1.jpg"></img>
+                                                <img alt="twitch" src="https://blog.twitch.tv/assets/uploads/twitch-generic-email-1-1-1-1.jpg"></img>
                                             </Link>
                                             <div className="bottomBar">
                                                 <p className="bottomBarText">Twitch Clips (Top 200)</p>
@@ -47,7 +47,7 @@ class MainPage extends React.Component{
                                     <Row>
                                         <div className="gamePics">
                                             <Link to="/youtube">
-                                                <img src="https://jungletopp.com/wp-content/uploads/2020/10/YouTube-Logo.jpg"></img>
+                                                <img alt="youtube" src="https://jungletopp.com/wp-content/uploads/2020/10/YouTube-Logo.jpg"></img>
                                             </Link>
                                             <div className="bottomBar">
                                                 <p className="bottomBarText"> Youtube Videos (Lastest 500)</p>

@@ -272,7 +272,7 @@ class Game2 extends React.Component{
         }
         else{
             return(
-                <div>
+                <div className="gameApp">
                     <Container>
                         <Row>
                             <h2 className='twitchFont'>Social HoL</h2>
@@ -285,8 +285,8 @@ class Game2 extends React.Component{
                     </Container>
                     <div className="gameRender">
                         {this.renderGameState()}
+                        <div className="blockMobile"></div>
                     </div>
-                    <Footer></Footer>
                 </div>
             )
         }

@@ -4,9 +4,11 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import Game from './components/Game.js'
 import Game2 from './components/Game2.js'
 import Youtube from './components/YoutubeGame'
+import TwitchPage from './components/TwitchPage.js'
 import MainPage from './components/MainPage.js'
 import NotFoundPage from './components/NotFoundPage'
 import YoutubePage from './components/YoutubePage';
+import Footer from './components/Footer'
 import ReactGA from 'react-ga'
 
 import { BrowserRouter, Switch, Route, Redirect} from 'react-router-dom';
@@ -26,6 +28,7 @@ class App extends React.Component{
         <BrowserRouter>
           <Switch>
             <Route exact path="/" component={MainPage}></Route>
+            <Route exact path="/twitch" component={TwitchPage}></Route>
             <Route path="/twitch/:username" component={Game2}></Route>
             <Route path="/test" component= { Game }></Route>
             <Route exact path="/youtube" component={ YoutubePage }></Route>
@@ -34,6 +37,7 @@ class App extends React.Component{
             <Redirect to='/404'></Redirect>
           </Switch>
         </BrowserRouter>
+        <Footer></Footer>
       </div>
     );
   }

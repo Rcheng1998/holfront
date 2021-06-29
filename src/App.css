@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
 
 .App {
-  text-align: center;
   font-family: 'Poppins';
   font-weight: 600;
   color: white;
@@ -29,6 +28,8 @@
   width: 90%;
   height: 50vh;
   border-radius: 5%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.329), 0 6px 20px 0 rgba(0, 0, 0, 0.575);
+  
 }
 
 .bar{
@@ -49,6 +50,14 @@
   -webkit-text-stroke-color: black;
 }
 
+.mainPageTitlte{
+  text-align: left;
+}
+
+.mainPageSub{
+  font-size: 1.5em;
+  padding-top: 1.2em;
+}
 .outer {
   display: table;
   position: absolute;
@@ -66,10 +75,70 @@
 .inner {
   margin-left: auto;
   margin-right: auto;
+  text-align: center;
   width: 40%;
   /* Whatever width you want */
 }
 
+.innerMain{
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  margin-top: 5%;
+}
+
+.leftTitle{
+  padding-top: 15%;
+  vertical-align: middle;
+}
+
+.gamePics{
+  position: relative;
+  padding-left: 0!important;
+  padding-right: 0!important;
+  transition: transform .2s;
+}
+
+.gamePics:hover{
+  transform: scale(1.1)
+}
+
+.mainHR{
+  width: 70%;
+}
+
+.titleHR{
+  margin: auto;
+  margin-bottom: 2%;
+  width: 20%;
+}
+
+.gameApp{
+  text-align: center;
+}
+
+.gamePics img{
+  display: block;
+  margin-top: 3%;
+  width: 100%;
+  height: auto;
+  max-width: 800px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.329), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.bottomBar {
+  height: 11%;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.404);
+}
+
+.bottomBarText{
+  margin-left: 2%;
+  margin-top: 1.5%;
+  font-size: 1em;
+}
 .innerModal{
   margin-left: auto;
   margin-right: auto;
@@ -238,18 +307,11 @@
     top: 25%;
   }
 
-  .gameButtons{
-    margin-bottom: 20%;
+  .blockMobile{
+    height: 100px;
+    width: 100%;
   }
 
-  .rightViews{
-    margin-bottom: 20%;
-  }
-
-  .rightViewCount{
-    margin-bottom: 20%;
-  }
-  
   .inner{
     width: 100%;
   }

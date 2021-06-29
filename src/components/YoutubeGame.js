@@ -4,7 +4,6 @@ import {Container, Row, Col, Button} from 'react-bootstrap';
 import Loading from './Loading'
 import EmbedYT from './EmbedYT'
 import Reward from 'react-rewards';
-import Footer from './Footer';
 import CountUp from 'react-countup';
 import ReactModal from 'react-modal';
 import {Link} from 'react-router-dom'
@@ -276,7 +275,7 @@ class YoutubeGame extends React.Component{
                                         <br></br>
                                         <div className="scoreBoard">
                                             <img className="twitchNamePic" alt="" src={this.state.profilepic}></img>
-                                            <p className="twitchName">{this.state.name}</p>
+                                            <p className="twitchName">{this.state.paraUsername}</p>
                                         </div>
                                         <br></br>
                                         <h4>Highscore - {this.state.highScore}</h4>
@@ -318,7 +317,7 @@ class YoutubeGame extends React.Component{
         }
         else{
             return(
-                <div>
+                <div className="gameApp">
                     <Container>
                         <Row>
                             <h2 className='twitchFont'>Social HoL</h2>
@@ -332,7 +331,7 @@ class YoutubeGame extends React.Component{
                     <div className="gameRender">
                         {this.renderGameState()}
                     </div>
-                    <Footer></Footer>
+                    <div className="blockMobile"></div>
                 </div>
             )
         }

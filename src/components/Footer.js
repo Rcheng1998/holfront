@@ -4,7 +4,7 @@ import { Navbar, Container, NavLink, NavItem, Nav } from 'react-bootstrap'
 class Footer extends React.Component{
     render(){
         return(
-            <div className="fixed-bottom">
+            <div className="fixed-bottom gameApp">
                 <Navbar color="light">
                     <Container className="justify-content-center">
                         <Nav>
@@ -13,9 +13,6 @@ class Footer extends React.Component{
                             </NavItem>
                             <NavItem>
                                 <NavLink href="/faq">FAQ</NavLink>
-                            </NavItem>
-                            <NavItem>
-                                <NavLink href="/youtube">Youtube</NavLink>
                             </NavItem>
                             <NavItem>
                                 <NavLink href="https://www.buymeacoffee.com/RickC">Support Me</NavLink>

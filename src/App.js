@@ -1,7 +1,6 @@
 import './App.css';
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'
-import Game from './components/Game.js'
 import Game2 from './components/Game2.js'
 import Youtube from './components/YoutubeGame'
 import TwitchPage from './components/TwitchPage.js'

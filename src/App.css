@@ -299,6 +299,10 @@
   margin-top: 20%;
 }
 
+.countUp{
+  margin-top: 1%;
+}
+
 @media only screen and (max-width: 600px) {
   .Modal {
     left: 5%;

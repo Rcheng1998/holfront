@@ -27,8 +27,8 @@ class MainPage extends React.Component{
                                         </div>
                                         <div className="mainPageSub">
                                             <hr className="mainHR"></hr>
-                                            <p>Play a game of <span className="greenView">Higher</span> or <span className="redView">Lower</span></p>
-                                            <p>of your favorite content creators</p>
+                                            <p>Play a game of <span className="greenView">High</span> or <span className="redView">Low</span></p>
+                                            <p>on your favorite content creators</p>
                                             <p>🔨 by RickC</p>
                                         </div>
                                     </div>

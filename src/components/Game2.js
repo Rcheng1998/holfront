@@ -4,11 +4,9 @@ import {Button, Container, Row, Col} from 'react-bootstrap';
 import axios from 'axios'
 import Embed from './Embed'
 import CountUp from 'react-countup';
-import Reward from 'react-rewards';
 import Loading from './Loading'
 import ReactModal from 'react-modal';
 import ReactGA from 'react-ga'
-
 
 class Game2 extends React.Component{
     constructor(props){
@@ -113,7 +111,6 @@ class Game2 extends React.Component{
                 if(this.state.leftClip.view_count < this.state.rightClip.view_count){
                     console.log('Correct!')
                     setTimeout( () => {
-                        this.reward.rewardMe()
                         this.setState({viewColor: 'greenView'})
                         setTimeout( () => {
                             this.winState()
@@ -123,7 +120,6 @@ class Game2 extends React.Component{
                 else{
                     console.log('Wrong! leftclip:', this.state.leftClip.view_count, 'rightclip:', this.state.rightClip.view_count)
                     setTimeout( () => {
-                        this.reward.punishMe()
                         this.setState({viewColor: 'redView'})
                         setTimeout( () => {
                             this.loseState()
@@ -135,7 +131,6 @@ class Game2 extends React.Component{
                 if(this.state.leftClip.view_count > this.state.rightClip.view_count){
                     console.log('Correct')
                     setTimeout( () => {
-                        this.reward.rewardMe()
                         this.setState({viewColor: 'greenView'})
                         setTimeout( () => {
                             this.winState()
@@ -145,7 +140,6 @@ class Game2 extends React.Component{
                 else{
                     console.log('Wrong! leftclip:', this.state.leftClip.view_count, 'rightclip:', this.state.rightClip.view_count)
                     setTimeout( () => {
-                        this.reward.punishMe()
                         this.setState({viewColor: 'redView'})
                         setTimeout( () => {
                             this.loseState()
@@ -201,11 +195,15 @@ class Game2 extends React.Component{
           };
           const onError = error => console.error(error);
 
+          const onEnd = () => {
+              console.log("Ended")
+          }
+
         setTimeout( () => {
         }, 2600, [])
         return(
             <div>
-            <CountUp className='rightViews' start={0} end={this.state.rightClip.view_count} separator={','} duration={2} onComplete={onComplete} onStart={onStart} onError={onError}></CountUp>
+            <CountUp className='rightViews' start={0} end={this.state.rightClip.view_count} separator={','} duration={2} onComplete={onComplete} onStart={onStart} onEnd={onEnd} onError={onError}></CountUp>
             </div>
         );
     }
@@ -254,9 +252,9 @@ class Game2 extends React.Component{
                         <Button className="gameButton" variant='outline-light' id="higher" onClick={ e => this.checkViews(e)}><i className="fas fa-arrow-up"></i> Higher</Button>
                         <Button className="gameButton" variant='outline-light' id="lower" onClick={e => this.checkViews(e)}><i className="fas fa-arrow-down"></i> Lower</Button>
                     </div>
-                    <Reward ref={(ref) => { this.reward = ref }} type='confetti' config={{springAnimation: false, decay: .975}}>
+                    <div className="countUp">
                         <span className={`rightViewCount ${this.state.viewColor}` }>{this.state.viewButtonToggle ? this.showRightClipView() : ""}</span>
-                    </Reward>
+                    </div>
                 </Col>
             </Row>
         </Container>

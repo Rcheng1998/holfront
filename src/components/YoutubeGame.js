@@ -3,7 +3,6 @@ import axios from 'axios';
 import {Container, Row, Col, Button} from 'react-bootstrap';
 import Loading from './Loading'
 import EmbedYT from './EmbedYT'
-import Reward from 'react-rewards';
 import CountUp from 'react-countup';
 import ReactModal from 'react-modal';
 import {Link} from 'react-router-dom'
@@ -158,7 +157,6 @@ class YoutubeGame extends React.Component{
                 if(this.state.leftClip.viewCount < this.state.rightClip.viewCount){
                     console.log('Correct!')
                     setTimeout( () => {
-                        this.reward.rewardMe()
                         this.setState({viewColor: 'greenView'})
                         setTimeout( () => {
                             this.winState()
@@ -168,7 +166,6 @@ class YoutubeGame extends React.Component{
                 else{
                     console.log('Wrong! leftclip:', this.state.leftClip.viewCount, 'rightclip:', this.state.rightClip.viewCount)
                     setTimeout( () => {
-                        this.reward.punishMe()
                         this.setState({viewColor: 'redView'})
                         setTimeout( () => {
                             this.loseState()
@@ -180,7 +177,6 @@ class YoutubeGame extends React.Component{
                 if(this.state.leftClip.viewCount > this.state.rightClip.viewCount){
                     console.log('Correct')
                     setTimeout( () => {
-                        this.reward.rewardMe()
                         this.setState({viewColor: 'greenView'})
                         setTimeout( () => {
                             this.winState()
@@ -190,7 +186,6 @@ class YoutubeGame extends React.Component{
                 else{
                     console.log('Wrong! leftclip:', this.state.leftClip.viewCount, 'rightclip:', this.state.rightClip.viewCount)
                     setTimeout( () => {
-                        this.reward.punishMe()
                         this.setState({viewColor: 'redView'})
                         setTimeout( () => {
                             this.loseState()
@@ -300,9 +295,9 @@ class YoutubeGame extends React.Component{
                         <Button className="gameButton" variant='outline-light' id="higher" onClick={ e => this.checkViews(e)}><i className="fas fa-arrow-up"></i> Higher</Button>
                         <Button className="gameButton" variant='outline-light' id="lower" onClick={e => this.checkViews(e)}><i className="fas fa-arrow-down"></i> Lower</Button>
                     </div>
-                    <Reward ref={(ref) => { this.reward = ref }} type='confetti' config={{springAnimation: false, decay: .975}}>
+                    <div className="countUp">
                         <span className={`rightViewCount ${this.state.viewColor}` }>{this.state.viewButtonToggle ? this.showRightClipView() : ""}</span>
-                    </Reward>
+                    </div>
                 </Col>
             </Row>
         </Container>

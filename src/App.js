@@ -8,6 +8,7 @@ import TwitchPage from './components/TwitchPage.js'
 import MainPage from './components/MainPage.js'
 import NotFoundPage from './components/NotFoundPage'
 import YoutubePage from './components/YoutubePage';
+import faqPage from './components/faqPage'
 import Footer from './components/Footer'
 import ReactGA from 'react-ga'
 
@@ -17,6 +18,7 @@ ReactGA.initialize('UA-199826519-1');
 
 class App extends React.Component{
   componentDidMount(){
+    document.body.style.backgroundColor = '#6441A4'
     ReactGA.pageview(window.location.pathname + window.location.search);
   }
 
@@ -30,7 +32,7 @@ class App extends React.Component{
             <Route exact path="/" component={MainPage}></Route>
             <Route exact path="/twitch" component={TwitchPage}></Route>
             <Route path="/twitch/:username" component={Game2}></Route>
-            <Route path="/test" component= { Game }></Route>
+            <Route path="/faq" component= { faqPage }></Route>
             <Route exact path="/youtube" component={ YoutubePage }></Route>
             <Route path="/youtube/:channelId" component={ Youtube }></Route>
             <Route component={ NotFoundPage }></Route>

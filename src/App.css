@@ -92,6 +92,19 @@
   vertical-align: middle;
 }
 
+.faqBlock{
+  font-weight: 400;
+}
+
+.faqTitle{
+  padding-top: 5%;
+}
+
+.faqQuestion{
+  padding-top: 2%;
+  color: black;
+}
+
 .gamePics{
   position: relative;
   padding-left: 0!important;

@@ -315,6 +315,24 @@
   margin-top: 1%;
 }
 
+.youtubeImg{
+  width: 10%;
+  height: auto;
+}
+
+.youtubeCol{
+  padding-top: 2%;
+  margin-bottom: 2%;
+}
+.youtubeInputCol{
+  padding-bottom: 5%;
+}
+
+.youtubeText{
+  font-size: 1.5em;
+  margin-left: 2%;
+}
+
 @media only screen and (max-width: 600px) {
   .Modal {
     left: 5%;

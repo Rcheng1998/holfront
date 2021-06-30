@@ -70,14 +70,14 @@ class TwitchPage extends React.Component{
                                 </ul>
                             </Row>
                             <Row>
-                                <Col md='9'>
+                                <Col className="youtubeInputCol" md='9'>
                                     <Form onSubmit={e => { e.preventDefault(); }} onKeyPress={this.handlekeyPress}>
                                         <Form.Group>
                                             <Form.Control type="text" value={this.state.inputValue} onChange={this.handleChange.bind(this)} placeholder="Type Twitch Name Here"></Form.Control>
                                         </Form.Group>
                                     </Form>
                                 </Col>
-                                <Col md='3'>
+                                <Col className="youtubeInputCol" md='3'>
                                     <Link to={'/twitch/' + this.state.inputValue}>
                                         <Button variant="outline-light" block> <i class="far fa-play-circle"></i> Play</Button>
                                     </Link>

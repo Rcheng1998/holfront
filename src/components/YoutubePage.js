@@ -1,7 +1,6 @@
 import React from 'react';
-import {Button, Container, Row, Col, Form} from 'react-bootstrap';
+import {Button, Container, Row, Col, Form, Popover, OverlayTrigger} from 'react-bootstrap';
 import axios from 'axios'
-import { Link } from 'react-router-dom';
 
 class YoutubePage extends React.Component{
     state = {
@@ -10,7 +9,7 @@ class YoutubePage extends React.Component{
     }
 
     componentDidMount(){
-        document.body.style.backgroundColor = "#770000"
+        document.body.style.backgroundColor = "#710000"
     }
 
     // Tracks keyboard input in input box
@@ -75,42 +74,41 @@ class YoutubePage extends React.Component{
                                 </Col>
                             </Row>
                             <Row>
-                                <p class="subTitle">Paste the channel's URL in the text box below.</p>
+                                <Col className="youtubeCol">
+                                    <img className="youtubeImg" src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/YouTube.max-1100x1100.png"></img>
+                                    <span className="youtubeText">Youtube</span>
+                                </Col>
                             </Row>
                             <Row>
-                                <ul class="list">
-                                    <li>
-                                       <Link to="/twitch/summit1g"><img alt="test1" src="https://static-cdn.jtvnw.net/jtv_user_pictures/99aa4739-21d6-40af-86ae-4b4d3457fce4-profile_image-70x70.png"></img></Link>
-                                    </li>
-                                    <li>
-                                        <Link to="/twitch/lilypichu"><img alt="test1" src="https://static-cdn.jtvnw.net/jtv_user_pictures/lilypichu-profile_image-9a1ba797a9721716-70x70.png"></img></Link>
-                                    </li>
-                                    <li>
-                                        <Link to="/twitch/ludwig"><img alt="test1" src="https://static-cdn.jtvnw.net/jtv_user_pictures/bde8aaf5-35d4-4503-9797-842401da900f-profile_image-70x70.png"></img></Link>
-                                    </li>
-                                    <li>
-                                        <Link to="/twitch/xqcow"><img alt="test1" src="https://static-cdn.jtvnw.net/jtv_user_pictures/xqcow-profile_image-9298dca608632101-150x150.jpeg"></img></Link>
-                                    </li>
-                                    <li>
-                                        <Link to="/twitch/mizkif"><img alt="test1" src="https://static-cdn.jtvnw.net/jtv_user_pictures/ddd88d33-6c4f-424f-9246-5f4978c93148-profile_image-150x150.png"></img></Link>
-                                    </li>
-                                    <li>
-                                        <Link to="/twitch/loltyler1"><img alt="test1" src="https://static-cdn.jtvnw.net/jtv_user_pictures/f3591dbe4ee3d94b-profile_image-150x150.png"></img></Link>
-                                    </li>
-                                    <li>
-                                        <Link to="/twitch/pokimane"><img alt="test1" src="https://static-cdn.jtvnw.net/jtv_user_pictures/beeafc17-3ebe-4e1d-b250-404f1ea56988-profile_image-150x150.png"></img></Link>
-                                    </li>
-                                </ul>
+                                <Col>
+                                    <p>Paste your content creator's channel URL below.</p>
+                                </Col>
                             </Row>
                             <Row>
-                                <Col md='9'>
+                                <Col className="youtubeInputCol" md="1">
+                                    <OverlayTrigger trigger="click" overlay={
+                                        <Popover>
+                                            <Popover.Title as="h3">Youtube Channel URL Help</Popover.Title>
+                                            <Popover.Content>
+                                                <img src="https://i.gyazo.com/50805a6f5724b3dce23d191a0bd9b32b.png"></img>
+                                                <p>Go to your content creator's channel page and copy their URL.</p>
+                                                <strong>This is not their display name in their videos.</strong>
+                                                <hr></hr>
+                                                <p>Note: some channel that have subdomains of /c/ may not work. Please use their channel ID.</p>
+                                            </Popover.Content>
+                                        </Popover>
+                                    }>
+                                        <Button variant="outline-light"><i class="fas fa-question"></i></Button>
+                                    </OverlayTrigger>
+                                </Col>
+                                <Col className="youtubeInputCol" md='8'>
                                     <Form onSubmit={e => { e.preventDefault(); }} onKeyPress={this.handlekeyPress.bind(this)}>
                                         <Form.Group>
                                             <Form.Control type="text" onChange={this.handleChange.bind(this)} placeholder="Paste Youtube Channel URL or ChannelID"></Form.Control>
                                         </Form.Group>
                                     </Form>
                                 </Col>
-                                <Col md='3'>
+                                <Col className="youtubeInputCol" md='3'>
                                     <Button onClick={() => this.submitURL()} variant="outline-light" block> <i class="far fa-play-circle"></i> Play</Button>
                                 </Col>
                             </Row>

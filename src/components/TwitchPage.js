@@ -1,15 +1,23 @@
 import React from 'react';
-import {Button, Container, Row, Col, Form} from 'react-bootstrap';
+import {Button, Container, Row, Col, Form, Alert} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 class TwitchPage extends React.Component{
-    state = {
-        inputValue: ""
-
+    constructor(props){
+        super(props)
+        this.state = {
+            inputValue: "",
+            hideAlert: true,
+            passedAlert: this.props.alert
+        }
     }
 
     componentDidMount(){
         document.body.style.backgroundColor = '#6441A4'
+
+        if(this.state.passedAlert === true){
+            this.setState({hideAlert: false})
+        }
     }
 
     // Tracks keyboard input in input box
@@ -82,6 +90,9 @@ class TwitchPage extends React.Component{
                                         <Button variant="outline-light" block> <i class="far fa-play-circle"></i> Play</Button>
                                     </Link>
                                 </Col>
+                            </Row>
+                            <Row>
+                                <Alert variant="danger" hidden={this.state.hideAlert}>Test alert</Alert>
                             </Row>
                         </Container>
                     </div>

@@ -5,6 +5,7 @@ import axios from 'axios'
 import Embed from './Embed'
 import CountUp from 'react-countup';
 import Loading from './Loading'
+import TwitchPage from './TwitchPage'
 import ReactModal from 'react-modal';
 import ReactGA from 'react-ga'
 
@@ -28,7 +29,8 @@ class Game2 extends React.Component{
             viewButtonToggle: false,
             viewColor: "whiteView",
             modalScore: 0,
-            highScore: 0
+            highScore: 0,
+            alert: false
         };
 
         this.handleOpenModal = this.handleOpenModal.bind(this);
@@ -50,7 +52,11 @@ class Game2 extends React.Component{
             this.setState({isLoading: false})
             console.log('Api Loaded')
             console.log(this.state.apiClipList)
-            
+        })
+        .catch(err => {
+            return(
+                this.props.history.push('/twitch/?alert=true')
+            )
         });
 
         // calls api for broadcaster's display name and profile picture
@@ -269,7 +275,12 @@ class Game2 extends React.Component{
     }
 
     render(){
-        if(this.state.isLoading){
+        if(this.state.alert === true){
+            return(
+                <TwitchPage></TwitchPage>
+            )
+        }
+        else if(this.state.isLoading){
             return(
                 <Loading></Loading>
             )

@@ -152,6 +152,8 @@ class YoutubeGame extends React.Component{
         this.setState({viewButtonToggle: true})
         this.setState({hideButton: true})
 
+        this.showRightClipView()
+
         // Check button click and compare the view count
             if(e.target.id === 'higher'){
                 if(this.state.leftClip.viewCount < this.state.rightClip.viewCount){
@@ -226,8 +228,8 @@ class YoutubeGame extends React.Component{
         }
         this.handleOpenModal()
         this.setInitialGame()
-        this.renderGameState()
         this.setState({viewButtonToggle: false})
+        this.renderGameState()
     }
 
     showRightClipView(){
@@ -241,11 +243,9 @@ class YoutubeGame extends React.Component{
 
           const onError = error => console.error(error);
 
-        setTimeout( () => {
-        }, 2600, [])
         return(
             <div>
-            <CountUp className='rightViews' start={0} end={this.state.rightClip.viewCount} separator={','} duration={2} onComplete={onComplete} onStart={onStart} onError={onError}></CountUp>
+                <CountUp className='rightViews' start={0} end={this.state.rightClip.viewCount} separator={','} duration={2} onComplete={onComplete} onStart={onStart} onError={onError}></CountUp>
             </div>
         );
     }

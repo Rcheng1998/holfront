@@ -72,7 +72,7 @@ class Game2 extends React.Component{
       }
       
     handleCloseModal () {
-    this.setState({ showModal: false });
+        this.setState({ showModal: false });
     }
 
     setInitialGame(){
@@ -85,7 +85,7 @@ class Game2 extends React.Component{
         let rand1 = Math.floor(Math.random() * this.state.apiClipList.length);
         let rand2 = Math.floor(Math.random() * this.state.apiClipList.length);
         if(rand1 === rand2){
-            rand2 = Math.floor(Math.random() * this.state.gameList.length)
+            rand2 = Math.floor(Math.random() * this.state.apiClipList.length)
         }
         let addRandList = [rand1, rand2]
         this.setState({clipsAdded:[...this.state.clipsAdded, ...addRandList]})
@@ -101,18 +101,23 @@ class Game2 extends React.Component{
     }
 
     checkViews(e){
+        console.log("in checkviews")
         // Enables button toggle for right clip's view count display
         this.setState({viewColor: 'whiteView'})
         this.setState({viewButtonToggle: true})
         this.setState({hideButton: true})
+
+        this.showRightClipView()
 
         // Check button click and compare the view count
             if(e.target.id === 'higher'){
                 if(this.state.leftClip.view_count < this.state.rightClip.view_count){
                     console.log('Correct!')
                     setTimeout( () => {
+                        console.log("changing color")
                         this.setState({viewColor: 'greenView'})
                         setTimeout( () => {
+                            console.log("transitioning to winState()")
                             this.winState()
                         }, 2000, [])
                     }, 3000, [])
@@ -120,8 +125,10 @@ class Game2 extends React.Component{
                 else{
                     console.log('Wrong! leftclip:', this.state.leftClip.view_count, 'rightclip:', this.state.rightClip.view_count)
                     setTimeout( () => {
+                        console.log("changing color")
                         this.setState({viewColor: 'redView'})
                         setTimeout( () => {
+                            console.log("transitioning to loseState()")
                             this.loseState()
                         }, 2000, [])
                     }, 3000, [])
@@ -131,8 +138,10 @@ class Game2 extends React.Component{
                 if(this.state.leftClip.view_count > this.state.rightClip.view_count){
                     console.log('Correct')
                     setTimeout( () => {
+                        console.log("changing color")
                         this.setState({viewColor: 'greenView'})
                         setTimeout( () => {
+                            console.log("transitioning to winState()")
                             this.winState()
                         }, 2000, [])
                     }, 3000, [])
@@ -140,8 +149,10 @@ class Game2 extends React.Component{
                 else{
                     console.log('Wrong! leftclip:', this.state.leftClip.view_count, 'rightclip:', this.state.rightClip.view_count)
                     setTimeout( () => {
+                        console.log("changing color")
                         this.setState({viewColor: 'redView'})
                         setTimeout( () => {
+                            console.log("transitioning to loseState()")
                             this.loseState()
                         }, 2000, [])
                     }, 3000, [])
@@ -150,6 +161,7 @@ class Game2 extends React.Component{
     }
 
     winState(){
+        console.log("in win state")
         // +1 counter to gameScore
         this.setState({gameScore: this.state.gameScore + 1})
 
@@ -176,6 +188,7 @@ class Game2 extends React.Component{
     }
 
     loseState(){
+        console.log("in lose state")
         if(this.state.gameScore > localStorage.getItem(this.state.paraUsername)){
             localStorage.setItem(this.state.paraUsername, this.state.gameScore)
         }
@@ -186,10 +199,6 @@ class Game2 extends React.Component{
     }
 
     showRightClipView(){
-        const onComplete = () => {
-            console.log('Completed!');
-          };
-          
           const onStart = () => {
             console.log('Started!');
           };
@@ -199,11 +208,9 @@ class Game2 extends React.Component{
               console.log("Ended")
           }
 
-        setTimeout( () => {
-        }, 2600, [])
         return(
             <div>
-            <CountUp className='rightViews' start={0} end={this.state.rightClip.view_count} separator={','} duration={2} onComplete={onComplete} onStart={onStart} onEnd={onEnd} onError={onError}></CountUp>
+                <CountUp className='rightViews' start={0} end={this.state.rightClip.view_count} separator={','} duration={2} onStart={onStart} onEnd={onEnd} onError={onError}></CountUp>
             </div>
         );
     }

@@ -155,46 +155,41 @@ class YoutubeGame extends React.Component{
         this.showRightClipView()
 
         // Check button click and compare the view count
+        setTimeout( () => {
+            console.log("in timeout of check")
             if(e.target.id === 'higher'){
-                if(this.state.leftClip.viewCount < this.state.rightClip.viewCount){
-                    console.log('Correct!')
+                if(this.state.leftClip.view_count < this.state.rightClip.view_count){
+                    this.setState({viewColor: 'greenView'})
                     setTimeout( () => {
-                        this.setState({viewColor: 'greenView'})
-                        setTimeout( () => {
-                            this.winState()
-                        }, 2000, [])
-                    }, 3000, [])
+                        this.winState()
+                    }, 2000, [])
                 }
                 else{
-                    console.log('Wrong! leftclip:', this.state.leftClip.viewCount, 'rightclip:', this.state.rightClip.viewCount)
+                    this.setState({viewColor: 'redView'})
                     setTimeout( () => {
-                        this.setState({viewColor: 'redView'})
-                        setTimeout( () => {
-                            this.loseState()
-                        }, 2000, [])
-                    }, 3000, [])
+                        this.loseState()
+                    }, 2000, [])
                 }
             }
             else if(e.target.id === 'lower'){
-                if(this.state.leftClip.viewCount > this.state.rightClip.viewCount){
-                    console.log('Correct')
+                if(this.state.leftClip.view_count < this.state.rightClip.view_count){
+                    this.setState({viewColor: 'redView'})
                     setTimeout( () => {
-                        this.setState({viewColor: 'greenView'})
-                        setTimeout( () => {
-                            this.winState()
-                        }, 2000, [])
-                    }, 3000, [])
+                        this.loseState()
+                    }, 2000, [])
                 }
                 else{
-                    console.log('Wrong! leftclip:', this.state.leftClip.viewCount, 'rightclip:', this.state.rightClip.viewCount)
+                    this.setState({viewColor: 'greenView'})
                     setTimeout( () => {
-                        this.setState({viewColor: 'redView'})
-                        setTimeout( () => {
-                            this.loseState()
-                        }, 2000, [])
-                    }, 3000, [])
+                        this.winState()
+                    }, 2000, [])
                 }
             }
+            else{
+                console.log('ERROR???')
+                console.log("left", this.state.leftClip, "right",this.state.rightClip, e.target.id )
+            }
+        }, 2000, [])
     }
 
     winState(){

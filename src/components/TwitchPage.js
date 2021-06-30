@@ -14,10 +14,14 @@ class TwitchPage extends React.Component{
 
     componentDidMount(){
         document.body.style.backgroundColor = '#6441A4'
+        let search = window.location.search;
+        let params = new URLSearchParams(search);
+        let foo = params.get('alert')
 
-        if(this.state.passedAlert === true){
+        if(foo){
             this.setState({hideAlert: false})
         }
+        console.log(foo)
     }
 
     // Tracks keyboard input in input box
@@ -92,7 +96,7 @@ class TwitchPage extends React.Component{
                                 </Col>
                             </Row>
                             <Row>
-                                <Alert variant="danger" hidden={this.state.hideAlert}>Test alert</Alert>
+                                <Alert variant="danger" hidden={this.state.hideAlert}>You have either entered the wrong channel name or the channel does not have enough clips!</Alert>
                             </Row>
                         </Container>
                     </div>

@@ -115,55 +115,93 @@ class Game2 extends React.Component{
 
         this.showRightClipView()
 
-        // Check button click and compare the view count
+        setTimeout( () => {
+            console.log("in timeout of check")
             if(e.target.id === 'higher'){
                 if(this.state.leftClip.view_count < this.state.rightClip.view_count){
-                    console.log('Correct!')
+                    this.setState({viewColor: 'greenView'})
                     setTimeout( () => {
-                        console.log("changing color")
-                        this.setState({viewColor: 'greenView'})
-                        setTimeout( () => {
-                            console.log("transitioning to winState()")
-                            this.winState()
-                        }, 2000, [])
-                    }, 3000, [])
+                        this.winState()
+                    }, 2000, [])
                 }
                 else{
-                    console.log('Wrong! leftclip:', this.state.leftClip.view_count, 'rightclip:', this.state.rightClip.view_count)
+                    this.setState({viewColor: 'redView'})
                     setTimeout( () => {
-                        console.log("changing color")
-                        this.setState({viewColor: 'redView'})
-                        setTimeout( () => {
-                            console.log("transitioning to loseState()")
-                            this.loseState()
-                        }, 2000, [])
-                    }, 3000, [])
+                        this.loseState()
+                    }, 2000, [])
                 }
             }
             else if(e.target.id === 'lower'){
-                if(this.state.leftClip.view_count > this.state.rightClip.view_count){
-                    console.log('Correct')
+                if(this.state.leftClip.view_count < this.state.rightClip.view_count){
+                    this.setState({viewColor: 'redView'})
                     setTimeout( () => {
-                        console.log("changing color")
-                        this.setState({viewColor: 'greenView'})
-                        setTimeout( () => {
-                            console.log("transitioning to winState()")
-                            this.winState()
-                        }, 2000, [])
-                    }, 3000, [])
+                        this.loseState()
+                    }, 2000, [])
                 }
                 else{
-                    console.log('Wrong! leftclip:', this.state.leftClip.view_count, 'rightclip:', this.state.rightClip.view_count)
+                    this.setState({viewColor: 'greenView'})
                     setTimeout( () => {
-                        console.log("changing color")
-                        this.setState({viewColor: 'redView'})
-                        setTimeout( () => {
-                            console.log("transitioning to loseState()")
-                            this.loseState()
-                        }, 2000, [])
-                    }, 3000, [])
+                        this.winState()
+                    }, 2000, [])
                 }
             }
+            else{
+                console.log('ERROR???')
+                console.log("left", this.state.leftClip, "right",this.state.rightClip, e.target.id )
+            }
+        }, 2000, [])
+
+        // Check button click and compare the view count
+        /*
+        if(e.target.id === 'higher'){
+            if(this.state.leftClip.view_count < this.state.rightClip.view_count){
+                console.log('Correct!')
+                setTimeout( () => {
+                    console.log("changing color")
+                    this.setState({viewColor: 'greenView'})
+                    setTimeout( () => {
+                        console.log("transitioning to winState()")
+                        this.winState()
+                    }, 2000, [])
+                }, 3000, [])
+            }
+            else{
+                console.log('Wrong! leftclip:', this.state.leftClip.view_count, 'rightclip:', this.state.rightClip.view_count)
+                setTimeout( () => {
+                    console.log("changing color")
+                    this.setState({viewColor: 'redView'})
+                    setTimeout( () => {
+                        console.log("transitioning to loseState()")
+                        this.loseState()
+                    }, 2000, [])
+                }, 3000, [])
+            }
+        }
+        else if(e.target.id === 'lower'){
+            if(this.state.leftClip.view_count > this.state.rightClip.view_count){
+                console.log('Correct')
+                setTimeout( () => {
+                    console.log("changing color")
+                    this.setState({viewColor: 'greenView'})
+                    setTimeout( () => {
+                        console.log("transitioning to winState()")
+                        this.winState()
+                    }, 2000, [])
+                }, 3000, [])
+            }
+            else{
+                console.log('Wrong! leftclip:', this.state.leftClip.view_count, 'rightclip:', this.state.rightClip.view_count)
+                setTimeout( () => {
+                    console.log("changing color")
+                    this.setState({viewColor: 'redView'})
+                    setTimeout( () => {
+                        console.log("transitioning to loseState()")
+                        this.loseState()
+                    }, 2000, [])
+                }, 3000, [])
+            }
+            
+        }*/
     }
 
     winState(){

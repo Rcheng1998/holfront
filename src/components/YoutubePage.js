@@ -40,7 +40,7 @@ class YoutubePage extends React.Component{
     async submitURL(){
         if(this.state.inputValue){
             console.log('in getting channel', this.state.inputValue)
-            if(this.state.inputValue[1] === "user" || this.state.inputValue[1] === "c"){
+            if(this.state.inputValue[1] === "user" || this.state.inputValue[1] === "channel"){
                 const channelRes = await axios.get('https://youtube.googleapis.com/youtube/v3/channels?part=snippet&forUsername=' + this.state.inputValue[2] + '&key=AIzaSyA8fghL1wGnRSZWJG37YpBfSqCLK1_mYzs',{
                     headers: {
                         'Accept': 'application/json',
@@ -49,6 +49,9 @@ class YoutubePage extends React.Component{
                 console.log(channelRes.data)
                 console.log('id', channelRes.data.items[0].id)
                 this.setState({outputID: channelRes.data.items[0].id})
+            }
+            else if(this.state.inputValue[1] === "c"){
+                
             }
             else{
                 this.setState({outputID: this.state.inputValue[2]})

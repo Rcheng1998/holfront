@@ -113,11 +113,13 @@ class Game2 extends React.Component{
         this.setState({viewButtonToggle: true})
         this.setState({hideButton: true})
 
+        let value = e.currentTarget.value
+
         this.showRightClipView()
 
         setTimeout( () => {
             console.log("in timeout of check")
-            if(e.target.id === 'higher'){
+            if(value === 'higher'){
                 if(this.state.leftClip.view_count < this.state.rightClip.view_count){
                     this.setState({viewColor: 'greenView'})
                     setTimeout( () => {
@@ -131,7 +133,7 @@ class Game2 extends React.Component{
                     }, 2000, [])
                 }
             }
-            else if(e.target.id === 'lower'){
+            else if(value === 'lower'){
                 if(this.state.leftClip.view_count < this.state.rightClip.view_count){
                     this.setState({viewColor: 'redView'})
                     setTimeout( () => {
@@ -147,7 +149,7 @@ class Game2 extends React.Component{
             }
             else{
                 console.log('ERROR???')
-                console.log("left", this.state.leftClip, "right",this.state.rightClip, e.target.id )
+                console.log("left", this.state.leftClip, "right",this.state.rightClip, value)
             }
         }, 2000, [])
 
@@ -300,8 +302,8 @@ class Game2 extends React.Component{
                 <Col md='6'>
                     <Embed embedURL = {this.state.rightClip.embed_url} title={this.state.rightClip.title}></Embed>
                     <div hidden={this.state.hideButton} className="gameButtons">
-                        <Button className="gameButton" variant='outline-light' id="higher" onClick={ e => this.checkViews(e)}><i className="fas fa-arrow-up"></i> Higher</Button>
-                        <Button className="gameButton" variant='outline-light' id="lower" onClick={e => this.checkViews(e)}><i className="fas fa-arrow-down"></i> Lower</Button>
+                        <Button className="gameButton" variant='outline-light' value="higher" onClick={ e => this.checkViews(e)}><i className="fas fa-arrow-up"></i> Higher</Button>
+                        <Button className="gameButton" variant='outline-light' value="lower" onClick={e => this.checkViews(e)}><i className="fas fa-arrow-down"></i> Lower</Button>
                     </div>
                     <div className="countUp">
                         <span className={`rightViewCount ${this.state.viewColor}` }>{this.state.viewButtonToggle ? this.showRightClipView() : ""}</span>

@@ -75,7 +75,7 @@ class YoutubePage extends React.Component{
                             </Row>
                             <Row>
                                 <Col className="youtubeCol">
-                                    <img className="youtubeImg" src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/YouTube.max-1100x1100.png"></img>
+                                    <img className="youtubeImg" alt="youtubeImg" src="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/YouTube.max-1100x1100.png"></img>
                                     <span className="youtubeText">Youtube</span>
                                 </Col>
                             </Row>
@@ -90,7 +90,7 @@ class YoutubePage extends React.Component{
                                         <Popover>
                                             <Popover.Title as="h3">Youtube Channel URL Help</Popover.Title>
                                             <Popover.Content>
-                                                <img src="https://i.gyazo.com/50805a6f5724b3dce23d191a0bd9b32b.png"></img>
+                                                <img alt="popoverhelp" src="https://i.gyazo.com/50805a6f5724b3dce23d191a0bd9b32b.png"></img>
                                                 <p>Go to your content creator's channel page and copy their URL.</p>
                                                 <strong>This is not their display name in their videos.</strong>
                                                 <hr></hr>

@@ -1,7 +1,7 @@
 import './App.css';
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'
-import Game2 from './components/Game2.js'
+import TwitchGame from './components/TwitchGame.js'
 import Youtube from './components/YoutubeGame'
 import TwitchPage from './components/TwitchPage.js'
 import MainPage from './components/MainPage.js'
@@ -30,7 +30,7 @@ class App extends React.Component{
           <Switch>
             <Route exact path="/" component={MainPage}></Route>
             <Route exact path="/twitch" component={TwitchPage}></Route>
-            <Route path="/twitch/:username" component={Game2}></Route>
+            <Route path="/twitch/:username" component={TwitchGame}></Route>
             <Route path="/faq" component= { faqPage }></Route>
             <Route exact path="/youtube" component={ YoutubePage }></Route>
             <Route path="/youtube/:channelId" component={ Youtube }></Route>

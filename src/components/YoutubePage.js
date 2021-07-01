@@ -87,8 +87,8 @@ class YoutubePage extends React.Component{
                         <Container>
                             <Row>
                                 <Col md={12}>
-                                    <h1 class="twitchFont">SOCIAL</h1>
-                                    <h1 class="twitchFont">HIGH or LOW</h1>
+                                    <h1 className="twitchFont">SOCIAL</h1>
+                                    <h1 className="twitchFont">HIGH or LOW</h1>
                                 </Col>
                             </Row>
                             <Row>
@@ -116,7 +116,7 @@ class YoutubePage extends React.Component{
                                             </Popover.Content>
                                         </Popover>
                                     }>
-                                        <Button variant="outline-light"><i class="fas fa-question"></i></Button>
+                                        <Button variant="outline-light"><i className="fas fa-question"></i></Button>
                                     </OverlayTrigger>
                                 </Col>
                                 <Col className="youtubeInputCol" md='8'>
@@ -127,7 +127,7 @@ class YoutubePage extends React.Component{
                                     </Form>
                                 </Col>
                                 <Col className="youtubeInputCol" md='3'>
-                                    <Button onClick={() => this.submitURL()} variant="outline-light" block> <i class="far fa-play-circle"></i> Play</Button>
+                                    <Button onClick={() => this.submitURL()} variant="outline-light" block> <i className="far fa-play-circle"></i> Play</Button>
                                 </Col>
                             </Row>
                             <Row>

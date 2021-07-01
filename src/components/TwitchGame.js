@@ -8,8 +8,9 @@ import Loading from './Loading'
 import TwitchPage from './TwitchPage'
 import ReactModal from 'react-modal';
 import ReactGA from 'react-ga'
+import Confetti from 'react-dom-confetti'
 
-class Game2 extends React.Component{
+class TwitchGame extends React.Component{
     constructor(props){
         super(props)
 
@@ -30,7 +31,8 @@ class Game2 extends React.Component{
             viewColor: "whiteView",
             modalScore: 0,
             highScore: 0,
-            alert: false
+            alert: false,
+            showConfetti: false
         };
 
         this.handleOpenModal = this.handleOpenModal.bind(this);
@@ -70,11 +72,13 @@ class Game2 extends React.Component{
         this.setInitialGame()
     }
 
-    handleOpenModal () {
+    handleOpenModal(showConfetti) {
         let highscore = localStorage.getItem(this.state.paraUsername);
         this.setState({highScore: highscore})
         this.setState({modalScore: this.state.gameScore})
         this.setState({ showModal: true });
+        this.setState({showConfetti: showConfetti})
+
       }
       
     handleCloseModal () {
@@ -85,6 +89,7 @@ class Game2 extends React.Component{
         // set view button toggle and game state
         this.setState({viewButtonToggle: false})
         this.setState({hideButton: false})
+        this.setState({showConfetti: false})
 
         // Set initial two clips and add them to clips added
         this.setState({clipsAdded: []})
@@ -235,10 +240,18 @@ class Game2 extends React.Component{
 
     loseState(){
         console.log("in lose state")
-        if(this.state.gameScore > localStorage.getItem(this.state.paraUsername)){
+        let showConfetti=false;
+        let highscore = localStorage.getItem(this.state.paraUsername)
+        if(highscore == null){
+            highscore = 0;
             localStorage.setItem(this.state.paraUsername, this.state.gameScore)
         }
-        this.handleOpenModal()
+        else if(this.state.gameScore > highscore){
+            localStorage.setItem(this.state.paraUsername, this.state.gameScore)
+            showConfetti=true;
+        }
+
+        this.handleOpenModal(showConfetti)
         this.setInitialGame()
         this.setState({viewButtonToggle: false})
         this.renderGameState()
@@ -276,6 +289,7 @@ class Game2 extends React.Component{
                             <div className="middle">
                                 <div className="innerModal subTitle">
                                     <Container>
+                                        <Confetti className="confetti" active={this.state.showConfetti}></Confetti>
                                         <h1>You lost!</h1>
                                         <br></br>
                                         <div className="scoreBoard">
@@ -348,4 +362,4 @@ class Game2 extends React.Component{
     }
 }
 
-export default withRouter(Game2);
+export default withRouter(TwitchGame);

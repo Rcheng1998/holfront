@@ -7,6 +7,7 @@ import CountUp from 'react-countup';
 import ReactModal from 'react-modal';
 import {Link} from 'react-router-dom'
 import ReactGA from 'react-ga'
+import Confetti from 'react-dom-confetti'
 
 class YoutubeGame extends React.Component{
     constructor(props){
@@ -30,7 +31,8 @@ class YoutubeGame extends React.Component{
             viewButtonToggle: false,
             viewColor: "whiteView",
             modalScore: 0,
-            highScore: 0
+            highScore: 0,
+            showConfetti: false
         }
 
         this.handleOpenModal = this.handleOpenModal.bind(this);
@@ -108,11 +110,12 @@ class YoutubeGame extends React.Component{
         return videoList;
     }
 
-    handleOpenModal () {
-        let highscore = localStorage.getItem(this.state.paraUsername);
+    handleOpenModal(showConfetti) {
+        let highscore = localStorage.getItem(this.state.channelID);
         this.setState({highScore: highscore})
         this.setState({modalScore: this.state.gameScore})
         this.setState({ showModal: true });
+        this.setState({showConfetti: showConfetti})
     }
       
     handleCloseModal () {
@@ -219,10 +222,16 @@ class YoutubeGame extends React.Component{
     }
 
     loseState(){
-        if(this.state.gameScore > localStorage.getItem(this.state.paraUsername)){
-            localStorage.setItem(this.state.paraUsername, this.state.gameScore)
+        let showConfetti= false;
+        let highscore = localStorage.getItem(this.state.channelID)
+        if(highscore == null){
+            highscore = 0;
         }
-        this.handleOpenModal()
+        if(this.state.gameScore > highscore){
+            localStorage.setItem(this.state.channelID, this.state.gameScore)
+            showConfetti = true;
+        }
+        this.handleOpenModal(showConfetti)
         this.setInitialGame()
         this.setState({viewButtonToggle: false})
         this.renderGameState()
@@ -262,6 +271,7 @@ class YoutubeGame extends React.Component{
                             <div className="middle">
                                 <div className="innerModal subTitle">
                                     <Container>
+                                        <Confetti className="confetti" active={this.state.showConfetti}></Confetti>
                                         <h1>You lost!</h1>
                                         <br></br>
                                         <div className="scoreBoard">

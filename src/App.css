@@ -107,6 +107,7 @@
 
 .gamePics{
   position: relative;
+  margin-bottom: 4%;
   padding-left: 0!important;
   padding-right: 0!important;
   transition: transform .2s;
@@ -132,7 +133,6 @@
 
 .gamePics img{
   display: block;
-  margin-top: 3%;
   width: 100%;
   height: auto;
   max-width: 800px;
@@ -332,6 +332,11 @@
   margin-left: 2%;
 }
 
+.confetti{
+  padding-left: 36%;
+  z-index:0;
+}
+
 @media only screen and (max-width: 600px) {
   .Modal {
     left: 5%;
@@ -363,6 +368,14 @@
 
   .loading{
     width: 90%;
+  }
+
+  .gamePics{
+    margin-bottom: 6%;
+  }
+
+  .gameButton{
+    margin-bottom: 2%;
   }
 }
 

@@ -40,7 +40,7 @@ class YoutubeGame extends React.Component{
     }
 
     async componentDidMount(){
-        document.body.style.backgroundColor = "#770000"
+        document.body.style.backgroundColor = "#810000"
         ReactGA.pageview(window.location.pathname + window.location.search);
 
         let youtubeURL = this.state.channelID;
@@ -111,7 +111,7 @@ class YoutubeGame extends React.Component{
     }
 
     handleOpenModal(showConfetti) {
-        let highscore = localStorage.getItem(this.state.channelID);
+        let highscore = localStorage.getItem(this.state.channelID.channelId);
         this.setState({highScore: highscore})
         this.setState({modalScore: this.state.gameScore})
         this.setState({ showModal: true });
@@ -223,12 +223,12 @@ class YoutubeGame extends React.Component{
 
     loseState(){
         let showConfetti= false;
-        let highscore = localStorage.getItem(this.state.channelID)
+        let highscore = localStorage.getItem(this.state.channelID.channelId)
         if(highscore == null){
             highscore = 0;
         }
         if(this.state.gameScore > highscore){
-            localStorage.setItem(this.state.channelID, this.state.gameScore)
+            localStorage.setItem(this.state.channelID.channelId, this.state.gameScore)
             showConfetti = true;
         }
         this.handleOpenModal(showConfetti)

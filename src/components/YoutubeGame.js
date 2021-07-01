@@ -42,7 +42,7 @@ class YoutubeGame extends React.Component{
         ReactGA.pageview(window.location.pathname + window.location.search);
 
         let youtubeURL = this.state.channelID;
-        const broadcastRes = await axios.get('https://youtube.googleapis.com/youtube/v3/channels?part=contentDetails&part=snippet&id=' + youtubeURL.channelId + '&key=AIzaSyA8fghL1wGnRSZWJG37YpBfSqCLK1_mYzs',{
+        const broadcastRes = await axios.get('https://youtube.googleapis.com/youtube/v3/channels?part=contentDetails&part=snippet&id=' + youtubeURL.channelId + `&key=${process.env.REACT_APP_YOUTUBEAPIKEY}`,{
             headers: {
                 'Accept': 'application/json',
             }
@@ -66,7 +66,7 @@ class YoutubeGame extends React.Component{
                 nextPageTokenString=""
             }
 
-            const videoRes = await axios.get('https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=' + this.state.uploadID + nextPageTokenString + '&key=AIzaSyA8fghL1wGnRSZWJG37YpBfSqCLK1_mYzs' ,{
+            const videoRes = await axios.get('https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=' + this.state.uploadID + nextPageTokenString + `&key=${process.env.REACT_APP_YOUTUBEAPIKEY}` ,{
                 headers: {
                     'Accept': 'application/json',
                 }
@@ -76,7 +76,7 @@ class YoutubeGame extends React.Component{
 
             let videoList = await this.getVideoIDs(videoRes.data.items)
     
-            const viewRes = await axios.get('https://youtube.googleapis.com/youtube/v3/videos?part=statistics' + videoList + '&key=AIzaSyA8fghL1wGnRSZWJG37YpBfSqCLK1_mYzs',{
+            const viewRes = await axios.get('https://youtube.googleapis.com/youtube/v3/videos?part=statistics' + videoList + `&key=${process.env.REACT_APP_YOUTUBEAPIKEY}`,{
                 headers: {
                     'Accept': 'application/json',
                 }
@@ -152,13 +152,14 @@ class YoutubeGame extends React.Component{
         this.setState({viewButtonToggle: true})
         this.setState({hideButton: true})
 
+        let value = e.currentTarget.value
+
         this.showRightClipView()
 
-        // Check button click and compare the view count
         setTimeout( () => {
             console.log("in timeout of check")
-            if(e.target.id === 'higher'){
-                if(this.state.leftClip.view_count < this.state.rightClip.view_count){
+            if(value === 'higher'){
+                if(this.state.leftClip.viewCount < this.state.rightClip.viewCount){
                     this.setState({viewColor: 'greenView'})
                     setTimeout( () => {
                         this.winState()
@@ -171,8 +172,8 @@ class YoutubeGame extends React.Component{
                     }, 2000, [])
                 }
             }
-            else if(e.target.id === 'lower'){
-                if(this.state.leftClip.view_count < this.state.rightClip.view_count){
+            else if(value === 'lower'){
+                if(this.state.leftClip.viewCount < this.state.rightClip.viewCount){
                     this.setState({viewColor: 'redView'})
                     setTimeout( () => {
                         this.loseState()
@@ -186,8 +187,8 @@ class YoutubeGame extends React.Component{
                 }
             }
             else{
-                console.log('Game Crashing Error')
-                console.log("left", this.state.leftClip, "right",this.state.rightClip, e.target.id )
+                console.log('ERROR???')
+                console.log("left", this.state.leftClip, "right",this.state.rightClip, value)
             }
         }, 2000, [])
     }
@@ -287,8 +288,8 @@ class YoutubeGame extends React.Component{
                 <Col md='6'>
                     <EmbedYT id = {this.state.rightClip.id} title={this.state.rightClip.title}></EmbedYT>
                     <div hidden={this.state.hideButton} className="gameButtons">
-                        <Button className="gameButton" variant='outline-light' id="higher" onClick={ e => this.checkViews(e)}><i className="fas fa-arrow-up"></i> Higher</Button>
-                        <Button className="gameButton" variant='outline-light' id="lower" onClick={e => this.checkViews(e)}><i className="fas fa-arrow-down"></i> Lower</Button>
+                        <Button className="gameButton" variant='outline-light' value="higher" onClick={ e => this.checkViews(e)}><i className="fas fa-arrow-up"></i> Higher</Button>
+                        <Button className="gameButton" variant='outline-light' value="lower" onClick={e => this.checkViews(e)}><i className="fas fa-arrow-down"></i> Lower</Button>
                     </div>
                     <div className="countUp">
                         <span className={`rightViewCount ${this.state.viewColor}` }>{this.state.viewButtonToggle ? this.showRightClipView() : ""}</span>

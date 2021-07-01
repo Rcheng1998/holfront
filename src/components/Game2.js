@@ -45,7 +45,7 @@ class Game2 extends React.Component{
         this.setState({paraUsername: username})
         
         // calls api for clips of broadcaster
-        await axios.get(`https://twitch-hol-backend.herokuapp.com/get/channel/` + username)
+        await axios.get(`${process.env.REACT_APP_TWITCHCHANNELURL}` + username)
         .then(res => {
             const persons = res.data
             this.setState({apiClipList: persons})
@@ -60,7 +60,7 @@ class Game2 extends React.Component{
         });
 
         // calls api for broadcaster's display name and profile picture
-        await axios.get(`https://twitch-hol-backend.herokuapp.com/get/profilepicture/` + username)
+        await axios.get(`${process.env.REACT_APP_TWITCHPROFILEPIC}` + username)
         .then(res => {
             const persons = res.data
             this.setState({profilepic: persons.data[0].profile_image_url})

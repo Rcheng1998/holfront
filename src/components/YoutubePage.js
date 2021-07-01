@@ -1,11 +1,12 @@
 import React from 'react';
-import {Button, Container, Row, Col, Form, Popover, OverlayTrigger} from 'react-bootstrap';
+import {Button, Container, Row, Col, Form, Popover, OverlayTrigger, Alert} from 'react-bootstrap';
 import axios from 'axios'
 
 class YoutubePage extends React.Component{
     state = {
         inputValue: "",
-        outputID: ""
+        outputID: "",
+        hideAlert: true
     }
 
     componentDidMount(){
@@ -40,8 +41,8 @@ class YoutubePage extends React.Component{
     async submitURL(){
         if(this.state.inputValue){
             console.log('in getting channel', this.state.inputValue)
-            if(this.state.inputValue[1] === "user" || this.state.inputValue[1] === "channel"){
-                const channelRes = await axios.get('https://youtube.googleapis.com/youtube/v3/channels?part=snippet&forUsername=' + this.state.inputValue[2] + '&key=AIzaSyA8fghL1wGnRSZWJG37YpBfSqCLK1_mYzs',{
+            if(this.state.inputValue[1] === "user"){
+                const channelRes = await axios.get('https://youtube.googleapis.com/youtube/v3/channels?part=snippet&forUsername=' + this.state.inputValue[2] + `&key=${process.env.REACT_APP_YOUTUBEAPIKEY}`,{
                     headers: {
                         'Accept': 'application/json',
                     }
@@ -50,24 +51,31 @@ class YoutubePage extends React.Component{
                 console.log('id', channelRes.data.items[0].id)
                 this.setState({outputID: channelRes.data.items[0].id})
             }
+            else if(this.state.inputValue[1] === "channel"){
+                this.setState({outputID: this.state.inputValue[2]})
+            }
             else if(this.state.inputValue[1] === "c"){
-                const channelRes = await axios.get('https://youtube.googleapis.com/youtube/v3/channels?part=snippet&forUsername=' + this.state.inputValue[2] + '&key=AIzaSyA8fghL1wGnRSZWJG37YpBfSqCLK1_mYzs',{
+                const channelRes = await axios.get('https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=' + this.state.inputValue[2] + `&type=channel&key=${process.env.REACT_APP_YOUTUBEAPIKEY}`,{
                     headers: {
                         'Accept': 'application/json',
                     }
                 });
                 console.log(channelRes.data)
-                console.log('id', channelRes.data.items[0].id)
-                this.setState({outputID: channelRes.data.items[0].id})
+                console.log('id', channelRes.data.items[0].id.channelId)
+                this.setState({outputID: channelRes.data.items[0].id.channelId})
             }
             else{
                 this.setState({outputID: this.state.inputValue[2]})
             }
+            return(
+                this.props.history.push('/youtube/' + this.state.outputID)
+            )
+        }
+        else{
+            this.setState({hideAlert: false})
         }
         console.log('In handlekey press')
-        return(
-            this.props.history.push('/youtube/' + this.state.outputID)
-        )
+
     }
 
     render(){
@@ -114,13 +122,16 @@ class YoutubePage extends React.Component{
                                 <Col className="youtubeInputCol" md='8'>
                                     <Form onSubmit={e => { e.preventDefault(); }} onKeyPress={this.handlekeyPress.bind(this)}>
                                         <Form.Group>
-                                            <Form.Control type="text" onChange={this.handleChange.bind(this)} placeholder="Paste Youtube Channel URL or ChannelID"></Form.Control>
+                                            <Form.Control type="text" onChange={this.handleChange.bind(this)} placeholder="ie. https://www.youtube.com/user/MrBeast6000"></Form.Control>
                                         </Form.Group>
                                     </Form>
                                 </Col>
                                 <Col className="youtubeInputCol" md='3'>
                                     <Button onClick={() => this.submitURL()} variant="outline-light" block> <i class="far fa-play-circle"></i> Play</Button>
                                 </Col>
+                            </Row>
+                            <Row>
+                                <Alert variant="danger" hidden={this.state.hideAlert}>You have either entered the wrong channel URL or the channel does not have enough videos!</Alert>
                             </Row>
                         </Container>
                     </div>

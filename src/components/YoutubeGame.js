@@ -186,7 +186,7 @@ class YoutubeGame extends React.Component{
                 }
             }
             else{
-                console.log('ERROR???')
+                console.log('Game Crashing Error')
                 console.log("left", this.state.leftClip, "right",this.state.rightClip, e.target.id )
             }
         }, 2000, [])

@@ -14,7 +14,7 @@
 .holder{
   overflow: hidden;
   position: relative;
-  height: 60vh;
+  height: 63vh;
   margin: 0 auto;
 }
 
@@ -26,7 +26,7 @@
 
 .ytFrame{
   width: 90%;
-  height: 50vh;
+  height: 47vh;
   border-radius: 5%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.329), 0 6px 20px 0 rgba(0, 0, 0, 0.575);
   
@@ -376,6 +376,10 @@
 
   .gameButton{
     margin-bottom: 2%;
+  }
+
+  .ytFrame{
+    width: 100%;
   }
 }
 

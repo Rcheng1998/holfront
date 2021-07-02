@@ -383,7 +383,7 @@
   }
 }
 
-@media screen and (min-width: 1080px) and (max-width:1440px){
+@media only screen and (min-width:1920px) and (max-width: 2560px){
   .holder{
     height: 69vh;
   }

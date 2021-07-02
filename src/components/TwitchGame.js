@@ -279,7 +279,7 @@ class TwitchGame extends React.Component{
         return(
         <Container fluid>
             <Row className="justify-content-md-center">
-                <Col md='6'>
+                <Col md='6' lg='6'>
                     <Embed embedURL = {this.state.leftClip.embed_url} title = {this.state.leftClip.title}></Embed>
                     <p className="leftViewCount">📈 {this.state.leftClip.view_count ? this.state.leftClip.view_count.toLocaleString('en') : this.state.leftClip.view_count}</p>
                 </Col>
@@ -313,7 +313,7 @@ class TwitchGame extends React.Component{
                         </div>
                     </ReactModal>
                 </Col>
-                <Col md='6'>
+                <Col md='6' lg='6'>
                     <Embed embedURL = {this.state.rightClip.embed_url} title={this.state.rightClip.title}></Embed>
                     <div hidden={this.state.hideButton} className="gameButtons">
                         <Button className="gameButton" variant='outline-light' value="higher" onClick={ e => this.checkViews(e)}><i className="fas fa-arrow-up"></i> Higher</Button>

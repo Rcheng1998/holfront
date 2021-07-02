@@ -261,7 +261,7 @@ class YoutubeGame extends React.Component{
         return(
         <Container fluid>
             <Row className="justify-content-md-center">
-                <Col md='6'>
+                <Col md='6' lg='6'>
                     <EmbedYT id = {this.state.leftClip.id} title = {this.state.leftClip.title}></EmbedYT>
                     <p className="leftViewCount">📈 {this.state.leftClip.viewCount ? this.state.leftClip.viewCount.toLocaleString('en') : this.state.leftClip.viewCount}</p>
                 </Col>
@@ -295,7 +295,7 @@ class YoutubeGame extends React.Component{
                         </div>
                     </ReactModal>
                 </Col>
-                <Col md='6'>
+                <Col md='6' lg='6'>
                     <EmbedYT id = {this.state.rightClip.id} title={this.state.rightClip.title}></EmbedYT>
                     <div hidden={this.state.hideButton} className="gameButtons">
                         <Button className="gameButton" variant='outline-light' value="higher" onClick={ e => this.checkViews(e)}><i className="fas fa-arrow-up"></i> Higher</Button>

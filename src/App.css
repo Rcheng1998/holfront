@@ -382,6 +382,12 @@
   }
 }
 
+@media only screen and (min-width:601px) and (max-width: 1342px){
+  .bar{
+    height: 18%;
+  }
+}
+
 @media only screen and (min-width:1920px) and (max-width: 2560px){
   .holder{
     height: 65vh;

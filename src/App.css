@@ -183,7 +183,7 @@
   font-size: 1.2rem;
   font-family: 'Poppins';
   font-weight: 400;
-  padding-top: 5%;
+  padding-top: 2%;
 }
 
 .scoreBoard{
@@ -384,11 +384,11 @@
 
 @media only screen and (min-width:1920px) and (max-width: 2560px){
   .holder{
-    height: 67vh;
+    height: 65vh;
   }
 
   .bar{
-    height: 15%;
+    height: 14%;
   }
 }
 

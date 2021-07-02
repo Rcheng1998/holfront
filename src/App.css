@@ -14,7 +14,7 @@
 .holder{
   overflow: hidden;
   position: relative;
-  height: 63vh;
+  height: 60vh;
   margin: 0 auto;
 }
 
@@ -380,6 +380,12 @@
 
   .ytFrame{
     width: 100%;
+  }
+}
+
+@media screen and (min-width: 1080px) and (max-width:1440px){
+  .holder{
+    height: 69vh;
   }
 }
 

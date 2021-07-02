@@ -292,9 +292,9 @@ class TwitchGame extends React.Component{
                                         <Confetti className="confetti" active={this.state.showConfetti}></Confetti>
                                         <h1>You lost!</h1>
                                         <br></br>
-                                        <div className="scoreBoard">
+                                        <div className="scoreBoardModal">
                                             <img className="twitchNamePic" alt="" src={this.state.profilepic}></img>
-                                            <p className="twitchName">{this.state.name}</p>
+                                            <p className="twitchNameModal">{this.state.name}</p>
                                         </div>
                                         <br></br>
                                         <h4>Highscore - {this.state.highScore}</h4>

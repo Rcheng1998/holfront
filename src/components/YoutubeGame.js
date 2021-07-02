@@ -274,9 +274,9 @@ class YoutubeGame extends React.Component{
                                         <Confetti className="confetti" active={this.state.showConfetti}></Confetti>
                                         <h1>You lost!</h1>
                                         <br></br>
-                                        <div className="scoreBoard">
+                                        <div className="scoreBoardModal">
                                             <img className="twitchNamePic" alt="" src={this.state.profilepic}></img>
-                                            <p className="twitchName">{this.state.paraUsername}</p>
+                                            <p className="twitchNameModal">{this.state.paraUsername}</p>
                                         </div>
                                         <br></br>
                                         <h4>Highscore - {this.state.highScore}</h4>

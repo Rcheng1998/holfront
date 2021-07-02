@@ -197,6 +197,15 @@
   justify-content: center;
 }
 
+.scoreBoardModal{
+  font-size: 1.3rem;
+  line-height: .8rem;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .twitchNamePic{
   width: 40px;
   height: 40px;
@@ -207,6 +216,12 @@
 .twitchName{
   padding-top: 1%;
   font-size: 1.5em;
+}
+
+.twitchNameModal{
+  padding-top: 1%;
+  padding-left: 2%;
+  font-size: 2em;
 }
 
 .gameScore{

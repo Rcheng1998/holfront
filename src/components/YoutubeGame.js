@@ -162,7 +162,7 @@ class YoutubeGame extends React.Component{
         setTimeout( () => {
             console.log("in timeout of check")
             if(value === 'higher'){
-                if(this.state.leftClip.viewCount < this.state.rightClip.viewCount){
+                if(this.state.leftClip.viewCount <= this.state.rightClip.viewCount){
                     this.setState({viewColor: 'greenView'})
                     setTimeout( () => {
                         this.winState()
@@ -176,7 +176,7 @@ class YoutubeGame extends React.Component{
                 }
             }
             else if(value === 'lower'){
-                if(this.state.leftClip.viewCount < this.state.rightClip.viewCount){
+                if(this.state.leftClip.viewCount <= this.state.rightClip.viewCount){
                     this.setState({viewColor: 'redView'})
                     setTimeout( () => {
                         this.loseState()

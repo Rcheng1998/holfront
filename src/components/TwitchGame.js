@@ -125,7 +125,7 @@ class TwitchGame extends React.Component{
         setTimeout( () => {
             console.log("in timeout of check")
             if(value === 'higher'){
-                if(this.state.leftClip.view_count < this.state.rightClip.view_count){
+                if(this.state.leftClip.view_count <= this.state.rightClip.view_count){
                     this.setState({viewColor: 'greenView'})
                     setTimeout( () => {
                         this.winState()
@@ -139,7 +139,7 @@ class TwitchGame extends React.Component{
                 }
             }
             else if(value === 'lower'){
-                if(this.state.leftClip.view_count < this.state.rightClip.view_count){
+                if(this.state.leftClip.view_count <= this.state.rightClip.view_count){
                     this.setState({viewColor: 'redView'})
                     setTimeout( () => {
                         this.loseState()

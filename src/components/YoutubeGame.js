@@ -60,7 +60,7 @@ class YoutubeGame extends React.Component{
         let nextPageToken
         let nextPageTokenString
         let readyGameList = []
-        for(let index = 0; index < 3; index++){
+        for(let index = 0; index < 9; index++){
             if(nextPageToken){
                 nextPageTokenString = "&pageToken=" + nextPageToken;
             }

@@ -10,7 +10,7 @@ class YoutubePage extends React.Component{
     }
 
     componentDidMount(){
-        document.body.style.backgroundColor = "#710000"
+        document.body.style.backgroundColor = "#790000"
     }
 
     // Tracks keyboard input in input box

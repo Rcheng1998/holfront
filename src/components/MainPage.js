@@ -50,7 +50,7 @@ class MainPage extends React.Component{
                                                 <img alt="youtube" src="https://jungletopp.com/wp-content/uploads/2020/10/YouTube-Logo.jpg"></img>
                                             </Link>
                                             <div className="bottomBar">
-                                                <p className="bottomBarText"> Youtube Videos (Lastest 500)</p>
+                                                <p className="bottomBarText"> Youtube Videos (Latest 500)</p>
                                             </div>
                                         </div>
                                     </Row>

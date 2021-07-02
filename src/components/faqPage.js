@@ -22,11 +22,15 @@ class faqPage extends React.Component{
                     </Row>
                     <Row className="faqBlock">
                         <h3 className="faqQuestion">Who are you?</h3>
-                        <p>- I am in @RickC in chat and I am a recent graduate bored in the summer and looking to learn and create more interactive web applications.</p>
+                        <p>- Hi! I am in @RickC in chat and I am a recent graduate bored in the summer. I am looking to learn and create more interactive web applications. I do not earn any money off of this project, so if had fun with the game, feel free to tip me <a href="https://www.buymeacoffee.com/RickC">here</a></p>
                     </Row>
                     <Row className="faqBlock">
                         <h3 className="faqQuestion">How did you make this website?</h3>
                         <p>- This website was made using the MERN stack (MongoDB, ExpressJS, React, NodeJS). I also use Twitch and Youtube's API to query clips and videos.</p>
+                    </Row>
+                    <Row className="faqBlock">
+                        <h3 className="faqQuestion">Why is the styling so weird for Twitch Clips?</h3>
+                        <p>- Due to how Twitch handles their embed clips, there is no way I am able to style or customize Twitch Clips. And since Twitch Clips have the view count of the clip displayed on the top, I had to put a purple bar on top of the clip in order to hide it. This may lead to styling and spacing issues in some unique resolutions. Please DM me if you find any weird styling issues between your devices.</p>
                     </Row>
                     <Row className="faqBlock">
                         <h3 className="faqQuestion">The website gets stuck when I press one of the buttons!</h3>
@@ -34,7 +38,7 @@ class faqPage extends React.Component{
                     </Row>
                     <Row className="faqBlock">
                         <h3 className="faqQuestion">My Youtube URL does not work!</h3>
-                        <p>- Due to how Youtube handles channel names, if the URL contains the subdomain of /c/ or /users/, it may not be able to be searched by Youtube's API due to their naming convention. If you are able to find their channel ID, it will work.</p>
+                        <p>- Due to how Youtube handles channel names, if the URL contains the subdomain of /c/, it may not be able to be searched by Youtube's API due to their custom naming convention. If you are able to find their channel ID, it will work.</p>
                     </Row>
                     <Row className="faqBlock">
                         <h3 className="faqQuestion">Will you add more websites for the game?</h3>

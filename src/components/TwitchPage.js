@@ -77,7 +77,7 @@ class TwitchPage extends React.Component{
                                         <Link to="/twitch/loltyler1"><img alt="test1" src="https://static-cdn.jtvnw.net/jtv_user_pictures/f3591dbe4ee3d94b-profile_image-150x150.png"></img></Link>
                                     </li>
                                     <li>
-                                        <Link to="/twitch/pokimane"><img alt="test1" src="https://static-cdn.jtvnw.net/jtv_user_pictures/beeafc17-3ebe-4e1d-b250-404f1ea56988-profile_image-150x150.png"></img></Link>
+                                        <Link to="/twitch/shroud"><img alt="test1" src="https://static-cdn.jtvnw.net/jtv_user_pictures/7ed5e0c6-0191-4eef-8328-4af6e4ea5318-profile_image-300x300.png"></img></Link>
                                     </li>
                                 </ul>
                             </Row>

@@ -12,7 +12,7 @@ class Embed extends React.Component{
                 <div>
                         <p className="clipTitle"> "{this.props.title}" </p>
                         <hr className="titleHR"></hr>
-                        <video className="twitchFrame" title="clip" src={this.props.embedURL.split('-preview-')[0] + ".mp4"} height="100%" width="100%" controls={true}></video>
+                        <video className="twitchFrame" title="clip" src={this.props.embedURL.split('-preview-')[0] + ".mp4"} height="100%" width="100%" controls={true} poster={this.props.embedURL}></video>
                 </div>
             )
         }

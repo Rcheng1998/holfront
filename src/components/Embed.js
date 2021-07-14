@@ -1,18 +1,22 @@
 import React from 'react';
 
 class Embed extends React.Component{
-
     render(){
-        return(
-            <div className='holder fadeIn'>
-                <div className="bar">
-                    <p className="clipTitle"> "{this.props.title}" </p>
-                    <hr className="titleHR"></hr>
+        console.log('embed url', this.props.embedURL)
+        if(this.props.embedURL == null){
+            return(null);
+        }
+        else{
+            console.log('embed url ELSE', this.props.embedURL.split('-preview')[0])
+            return(
+                <div>
+                        <p className="clipTitle"> "{this.props.title}" </p>
+                        <hr className="titleHR"></hr>
+                        <video className="twitchFrame" title="clip" src={this.props.embedURL.split('-preview-')[0] + ".mp4"} height="100%" width="100%" controls={true}></video>
                 </div>
-                <iframe className="frame" title="clip" src={this.props.embedURL + "&parent=socialhol.com&parent=www.socialhol.com&parent=socialhol.netlify.app&parent=www.socialhol.netlify.app&parent=netlify.app"} height="100%" width="100%" allowFullScreen={true}></iframe>
-            </div>
-        )
+            )
+        }
     }
 }
 
-export default Embed
+export default Embed;

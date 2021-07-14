@@ -11,17 +11,9 @@
 	padding: 12px 30px !important;
 }
 
-.holder{
-  overflow: hidden;
-  position: relative;
-  height: 60vh;
-  margin: 0 auto;
-}
-
-.frame{
-  width: 90%;
-  height: 100%;
-  border: 0;
+.twitchFrame{
+  border-radius: 2%;
+  width: 98%;
 }
 
 .ytFrame{
@@ -29,15 +21,6 @@
   height: 47vh;
   border-radius: 5%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.329), 0 6px 20px 0 rgba(0, 0, 0, 0.575);
-}
-
-.bar{
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 20%;
-  background-color: #6441A4;
 }
 
 .twitchFont{
@@ -410,14 +393,5 @@
 
   .bar{
     height: 14%;
-  }
-}
-
-@keyframes fadeIn {
-  0% {
-      opacity:0;
-  }
-  100% {
-      opacity:1;
   }
 }
